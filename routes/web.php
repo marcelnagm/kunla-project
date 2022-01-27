@@ -16,3 +16,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/post/{id}', ['middleware' => 'auth', function (Request $request, $id) {
+    $user = Auth::user();
+
+    $user = $request->user();
+
+    //
+}]);
