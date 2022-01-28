@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\StateSeeder;
+use Database\Seeders\CandidateEnglishLevelSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+         $this->call([
+             StateSeeder::class,
+             CandidateEnglishLevelSeeder::class,
+             ]);
+//         $this->call('CandidateEnglishLevelSeeder');
     }
 }
