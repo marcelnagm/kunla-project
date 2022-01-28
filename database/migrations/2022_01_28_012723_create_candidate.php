@@ -35,11 +35,12 @@ class CreateCandidate extends Migration
             $table->string('cellphone')->nullable(false);             
             $table->string('email')->nullable(false);             
             $table->string('cv_url')->nullable(false);             
+            $table->timestamp('published_at')->nullable(true);
             $table->unsignedBigInteger('status_id')->nullable(false);            
             $table->foreign('role_id')->references('id')->on('candidate_role');
             $table->foreign('english_level')->references('id')->on('candidate_english_level');
             $table->foreign('status_id')->references('id')->on('candidate_status');
-            $table->foreign('state_id')->references('id')->on('state');
+            $table->foreign('state_id')->references('id')->on('state');            
             $table->timestamps();
         });
     }

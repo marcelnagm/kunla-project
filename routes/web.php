@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Router;
 use App\Models\State;
+use App\Models\Candidate;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 /*
@@ -16,23 +17,17 @@ use App\Models\State;
   |
  */
 
-Route::group(['middleware' => ['auth']], function () {
-//    Route::resource('user', 'UserController', ['except' => ['show']]);
-//    Route::post('/user/push', 'UserController@checkPushNotificationId');
-//
-//    Route::name('admin.')->group(function () {
-//        Route::get('syncV1UsersToAuth0', 'SettingsController@syncV1UsersToAuth0')->name('syncV1UsersToAuth0');
-//        Route::get('dontsyncV1UsersToAuth0', 'SettingsController@dontsyncV1UsersToAuth0')->name('dontsyncV1UsersToAuth0');
-//        Route::resource('restaurants', 'RestorantController');
-//        Route::put('restaurants_app_update/{restaurant}', 'RestorantController@updateApps')->name('restaurant.updateApps');
-//    });
+$router->group(['middleware' => ['auth']], function ($router) {
+
+$router->post('/candidate', 'CandidateControler@index');
+$router->post('/candidate/store/', 'CandidateControler@store');
+$router->post('/candidate/{id}', 'CandidateControler@show');
+$router->delete('/candidate/{id}', 'CandidateControler@destroy');
+        
+    
+
 });
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
-$router->post('/', ['middleware' => 'auth', function (Request $request) {
-        return State::find(1);
-        //
-    }]);
