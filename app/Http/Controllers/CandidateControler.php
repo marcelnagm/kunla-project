@@ -7,22 +7,9 @@ use Illuminate\Http\Request;
 
 class CandidateControler extends Controller {
 
-    public function index() {
-        return Candidate::orderBy('id')->cursorPaginate(2);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-
-        $rules = array(
+    private $rules = array(
             'title' => 'required|max:255',
             'role_id' => 'required|max:255',
-            'title' => 'required|max:255',
             'payment' => 'required|max:8',
             'CID' => 'required|max:244',
             'state_id' => 'required|max:2',
@@ -37,6 +24,31 @@ class CandidateControler extends Controller {
             'cv_url' => 'required|max:255' ,
             'status_id'=> 'required|max:1'
         );
+    
+    private $searchble= array(
+        'title' => '%',
+            'role_id' => '%',
+            'payment_min' => 'min',
+            'payment_max' => 'max',
+            'state_id' => '=',
+         'city' => '%',
+        'remote' => '='
+    );
+    
+    
+    public function index() {
+        return Candidate::orderBy('id')->cursorPaginate(2);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+
+        
 
 //          $messsages = array(
 //		'email.required'=>'You cant leave Email field empty',
@@ -44,7 +56,7 @@ class CandidateControler extends Controller {
 //                'name.min'=>'The field has to be :min chars long',
 //	);
 
-        $data = $this->validate($request, $rules);
+        $data = $this->validate($request, $this->rules);
 //        dd ($data);
 //	$validator = Validator::make(Input::all(), $rules,$messsages);
 
@@ -56,7 +68,7 @@ class CandidateControler extends Controller {
 
         return response()->json([
                     'status' => true,
-                    'msg' => 'Address successfully added!',
+                    'msg' => 'Candidadte successfully added!',
         ]);
     }
 
@@ -77,16 +89,13 @@ class CandidateControler extends Controller {
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address) {
-        $address->lat = $request->lat;
-        $address->lng = $request->lng;
-
-        $address->update();
+    public function update(Request $request, $id) {
+        $candidate =Candidate::find($id);
+        $candidate->update($this->validate($request, $this->rules));
 
         return response()->json([
-                    'status' => true,
-                    'success_url' => redirect()->intended('/cart-checkout')->getTargetUrl(),
-                    'msg' => 'Address successfully updated!',
+                    'status' => true,                   
+                    'msg' => 'Candidate successfully updated!',
         ]);
     }
 
@@ -98,6 +107,41 @@ class CandidateControler extends Controller {
     public function destroy($id) {
 
         return Candidate::find($id)->delete();
+    }
+    
+
+    /**
+     * Remove the specified resource from storage.
+     *     
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        
+        $param = array ();
+        $search =Candidate::select(); 
+        foreach ($this->searchble as $key => $val){            
+            if ($request->has($key)){
+                if ($val == '='){
+                      $search= $search->where($key,$request->input($key));
+                }
+                if ($val == '%'){
+                    if ($key == 'role_id'){
+                     $search= $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id')
+                             ->where('role','like',$val.$request->input($key).$val);   
+                    } else{
+                        $search= $search->where($key,'like',$val.$request->input($key).$val);
+                    }                      
+                }
+                if ($val == 'min' || $val=='max'){                    
+                      $search= $search->where(str_replace('_'.$val, '', $key),
+                              $val  == 'min' ? '>=' : '<=',
+                              $request->input($key));
+               }                              
+            }
+        }
+        
+        
+        return $search->get();
     }
 
 }

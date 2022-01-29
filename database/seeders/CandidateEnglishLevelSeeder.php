@@ -19,6 +19,17 @@ class CandidateEnglishLevelSeeder extends Seeder {
     private $status = [
         'Ativo', 'Inativo', 'Em espera'
     ];
+    
+    private $roles = array('Gestor de projetos'.
+'Arquiteto de TI',
+'Programador',
+'Administrador de banco de dados',
+'Desenvolvedor web',
+'Sistemas de Informação',
+'Redes de Computadores',
+'Engenharia de Computação',
+'Analista de IA',
+'Analista Cloud');
 
     public function run() {
         //
@@ -39,9 +50,9 @@ class CandidateEnglishLevelSeeder extends Seeder {
                 'updated_at' => date("Y-m-d H:i:s")
             ]);
         }
-        for ($i = 0; $i < 5; $i++) {
+         foreach ($this->roles as $key) {
             DB::table('candidate_role')->insert([
-                'role' => Str::random(20),
+                'role' => $key,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ]);
@@ -49,7 +60,7 @@ class CandidateEnglishLevelSeeder extends Seeder {
         }
          for ($i = 0; $i < 85; $i++) {
                 DB::table('candidate')->insert([
-                    'role_id' => random_int(1, 4),
+                    'role_id' => random_int(1, count($this->roles)),
                     'title' => Str::random(20),
                     'payment' => random_int(1000, 5000),
                     'CID' => Str::random(20),
