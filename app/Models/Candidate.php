@@ -53,4 +53,8 @@ class Candidate extends Model {
         return $this->role;
     }
 
+    public function check(){
+        
+    }
+    
 }
