@@ -141,7 +141,7 @@ class CandidateControler extends Controller {
         }
         
         
-        return $search->get();
+        return $search->paginate(10);
     }
 
 }
