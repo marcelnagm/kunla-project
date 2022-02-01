@@ -35,21 +35,40 @@ class CandidateControler extends Controller {
         'remote' => '='
     );
     
-    
+   /**
+    *   Retorna um Json com todos os registos
+    * @return Json 
+    */ 
     public function index() {
-        return Candidate::orderBy('id')->cursorPaginate(2);
+        return Candidate::orderBy('id')->cursorPaginate(10);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Armazena um candidato 
+     * A validação segue o modelo abaixo
+     *  'title' => 'required|max:255',
+     *       'role_id' => 'required|max:255',
+     *       'payment' => 'required|max:8',
+     *       'CID' => 'required|max:244',
+     *       'state_id' => 'required|max:2',
+     *       'city' => 'required|max:255',
+     *       'remote' => 'required|max:1',
+     *       'move_out' => 'required|max:1',
+     *       'description' => 'required|max:255',
+     *       'english_level' => 'required|max:1',
+     *       'full_name' => 'required|max:255', 
+     *       'cellphone'=> 'required|max:12', 
+     *       'email' => 'required|max:255', 
+     *       'cv_url' => 'required|max:255' ,
+     *       'status_id'=> 'required|max:1'
+     * 
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response retorna um json notificando que foi criado ou uma mensagem de erro de validação de campo
      */
     public function store(Request $request) {
 
         
-
+        
 //          $messsages = array(
 //		'email.required'=>'You cant leave Email field empty',
 //		'name.required'=>'You cant leave name field empty',
@@ -83,11 +102,26 @@ class CandidateControler extends Controller {
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza o candidato informado {id} segue a regra de validação
+     * baseado no campo(s) informado(s)
+     *  'title' => 'required|max:255',
+     *        'role_id' => 'required|max:255',
+     *       'payment' => 'required|max:8',
+     *       'CID' => 'required|max:244',
+     *       'state_id' => 'required|max:2',
+     *       'city' => 'required|max:255',
+     *       'remote' => 'required|max:1',
+     *       'move_out' => 'required|max:1',
+     *       'description' => 'required|max:255',
+     *       'english_level' => 'required|max:1',
+     *       'full_name' => 'required|max:255', 
+     *       'cellphone'=> 'required|max:12', 
+     *       'email' => 'required|max:255', 
+     *       'cv_url' => 'required|max:255' ,
+     *       'status_id'=> 'required|max:1'
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Address  $address
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request     
+     * @return \Illuminate\Http\Response Json com mensagem de sucesso ou mensagem de erro de validação
      */
     public function update(Request $request, $id) {
         $candidate =Candidate::find($id);
@@ -100,7 +134,7 @@ class CandidateControler extends Controller {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove o candidato especificado
      *     
      * @return \Illuminate\Http\Response
      */
@@ -111,8 +145,15 @@ class CandidateControler extends Controller {
     
 
     /**
-     * Remove the specified resource from storage.
-     *     
+     * Retorna os candidatos pelos parâmetros informados
+     * Operado utilizado por campo
+     *   'title' => '%',
+     *       'role_id' => '%',
+     *       'payment_min' => 'min',
+     *       'payment_max' => 'max',
+     *       'state_id' => '=',
+     *    'city' => '%',
+     *   'remote' => '='   
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request) {
