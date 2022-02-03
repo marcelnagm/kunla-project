@@ -1,0 +1,161 @@
+JSON ENVIADO PARA UPDATE
+
+{
+   "api_token":1,
+   "role_id":6,
+   "title":"teste json",
+   "payment":3833,
+   "CID":"JsahXfIYjRLGcbj7h9s1",
+   "state_id":18,
+   "city":"NuvpBhlwefJJpvXFtetQ",
+   "remote":0,
+   "move_out":1,
+   "description":"t7SpZY21FZzWDoonKK4O",
+   "tecnical_degree":null,
+   "superior_degree":null,
+   "spec_degree":null,
+   "mba_degree":null,
+   "master_degree":null,
+   "doctor_degree":null,
+   "english_level":1,
+   "full_name":"gWMOjtujZmxMoD6bTIg0xsIi7ZEeb28RtJsu3dNC",
+   "cellphone":"90502607752",
+   "email":"gtDjZkmudj@iqUJA0Eqwo.02x",
+   "cv_url":"http:\/\/ABWaS6I7Np.hCZozb4NPf.Pmo",
+   "published_at":null,
+   "status_id":1
+}
+
+#RETORNO DO UPDATE/INSERT
+
+{"status":true,"msg":"Candidate successfully updated!"}
+#ENVIO DO SEARCH
+
+{
+ "api_token" : "1",
+  "state_id" : [3,5,1,2,4,6,7,8,9,10],
+  "order_by" : [
+      {"payment" : "asc",
+        "state.name" : "desc",
+        "candidate_role.role" : "desc"
+      }
+      ]
+}
+
+
+
+#RETORNO DO SEARCH 
+
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 2,
+            "role_id": 3,
+            "title": "Teste de store",
+            "payment": 43242,
+            "CID": "dfsfsfsd",
+            "state_id": 3,
+            "city": "fdsvgfsdfgd",
+            "remote": 1,
+            "move_out": 1,
+            "description": "gfdgdgdfgdfgdf",
+            "tecnical_degree": null,
+            "superior_degree": null,
+            "spec_degree": null,
+            "mba_degree": null,
+            "master_degree": null,
+            "doctor_degree": null,
+            "english_level": 2,
+            "full_name": "gfdffffffffff",
+            "cellphone": "3423423",
+            "email": "m@m.com",
+            "cv_url": "http://teste.com",
+            "published_at": null,
+            "status_id": 2,
+            "created_at": "2022-01-31T15:40:41.000000Z",
+            "updated_at": "2022-02-03T13:11:55.000000Z"
+        },
+        {
+            "id": 4,
+            "role_id": 7,
+            "title": "mL5mfvOakRvgXjkdicml",
+            "payment": 4224,
+            "CID": "H3MHOGZdmFCECq0LHi6N",
+            "state_id": 3,
+            "city": "YecGY6EiNGsXAy0dZkiK",
+            "remote": 0,
+            "move_out": 1,
+            "description": "zDORw9bvLSP4IALTVaGm",
+            "tecnical_degree": null,
+            "superior_degree": null,
+            "spec_degree": null,
+            "mba_degree": null,
+            "master_degree": null,
+            "doctor_degree": null,
+            "english_level": 2,
+            "full_name": "cphOvP7w5l0Fc6rgZGW1IslwvC3HWHMTdht2kIci",
+            "cellphone": "28103099",
+            "email": "VO5JtJQtHA@B69qluP6Ud.7kL",
+            "cv_url": "http://wQNVBst8OX.c5wfWylo1m.bRT",
+            "published_at": null,
+            "status_id": 1,
+            "created_at": "2022-01-31T15:40:42.000000Z",
+            "updated_at": "2022-01-31T15:40:42.000000Z"
+        },
+        {
+            "id": 25,
+            "role_id": 4,
+            "title": "YXdiFZYIRsH0xkvGEWrs",
+            "payment": 1754,
+            "CID": "YRMdAgg8oOXuVJ5cV6et",
+            "state_id": 3,
+            "city": "6rVg7dTTEtk7w867wrCW",
+            "remote": 0,
+            "move_out": 0,
+            "description": "PUgf23K5FdA9idg8Dl1c",
+            "tecnical_degree": null,
+            "superior_degree": null,
+            "spec_degree": null,
+            "mba_degree": null,
+            "master_degree": null,
+            "doctor_degree": null,
+            "english_level": 1,
+            "full_name": "eRaNAaKIwiXWnxt1lUMS4raVzjrsWoCePbcgZWmq",
+            "cellphone": "46529331",
+            "email": "Mw6irTYTZ1@Q1JVbk8k5s.Ydq",
+            "cv_url": "http://QDSW1xMtP6.84b3uTRBOi.CYJ",
+            "published_at": null,
+            "status_id": 2,
+            "created_at": "2022-01-31T15:40:47.000000Z",
+            "updated_at": "2022-01-31T15:40:47.000000Z"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/candidate/search?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/candidate/search?page=1",
+    "links": [
+        {
+            "url": null,
+            "label": "pagination.previous",
+            "active": false
+        },
+        {
+            "url": "http://localhost:8000/candidate/search?page=1",
+            "label": "1",
+            "active": true
+        },
+        {
+            "url": null,
+            "label": "pagination.next",
+            "active": false
+        }
+    ],
+    "next_page_url": null,
+    "path": "http://localhost:8000/candidate/search",
+    "per_page": 10,
+    "prev_page_url": null,
+    "to": 3,
+    "total": 3
+}

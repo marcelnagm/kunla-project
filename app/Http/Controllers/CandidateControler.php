@@ -30,7 +30,7 @@ class CandidateControler extends Controller {
             'role_id' => '%',
             'payment_min' => 'min',
             'payment_max' => 'max',
-            'state_id' => '=',
+            'state_id' => 'in',
          'city' => '%',
         'remote' => '='
     );
@@ -159,11 +159,18 @@ class CandidateControler extends Controller {
     public function search(Request $request) {
         
         $param = array ();
+        /**
+         * @var $search 
+         */
+//        $search = new luminate\Database\Eloquent\Builder();
         $search =Candidate::select(); 
         foreach ($this->searchble as $key => $val){            
             if ($request->has($key)){
                 if ($val == '='){
                       $search= $search->where($key,$request->input($key));
+                }
+                if ($val == 'in'){
+                      $search= $search->whereIn($key,$request->input($key));
                 }
                 if ($val == '%'){
                     if ($key == 'role_id'){
@@ -180,8 +187,21 @@ class CandidateControler extends Controller {
                }                              
             }
         }
-        
-        
+//        dd($request->input('order_by'));
+        foreach($request->input('order_by')[0] as $order => $type) {
+//                      
+            $search->orderBy($order,$type);                
+             if ($order == 'candidate_role.role'){
+                     $search= $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id');
+                     $search->orderBy($order,$type);                
+                    }
+             if ($order == 'state.name'){
+                     $search= $search->join('state', 'candidate.state_id', '=', 'state.id');
+                     $search->orderBy($order,$type);                
+                    }            
+        }
+//         
+//        dd($search->toSql());
         return $search->paginate(10);
     }
 
