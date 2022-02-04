@@ -132,6 +132,18 @@ class CandidateControler extends Controller {
                     'msg' => 'Candidate successfully updated!',
         ]);
     }
+    
+    public function publish(Request $request, $id) {
+        $candidate =Candidate::where('gid',$id)->first();
+        $candidate->status_id = 1;
+        $candidate->published_at = date("Y-m-d H:i:s");
+        $candidate->update();
+
+        return response()->json([
+                    'status' => true,                   
+                    'msg' => 'Candidate successfully updated!',
+        ]);
+    }
 
     /**
      * Remove o candidato especificado

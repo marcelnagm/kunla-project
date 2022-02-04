@@ -23,6 +23,7 @@ $router->post('/candidate', 'CandidateControler@index');
 $router->post('/candidate/store/', 'CandidateControler@store');
 $router->post('/candidate/search', 'CandidateControler@search');
 $router->post('/candidate/{id}', 'CandidateControler@show');
+$router->post('/candidate/{id}/publish', 'CandidateControler@publish');
 $router->put('/candidate/{id}/update', 'CandidateControler@update');
 $router->delete('/candidate/{id}', 'CandidateControler@destroy');
         
