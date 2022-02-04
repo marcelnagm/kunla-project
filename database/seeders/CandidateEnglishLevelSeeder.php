@@ -60,6 +60,7 @@ class CandidateEnglishLevelSeeder extends Seeder {
         }
          for ($i = 0; $i < 85; $i++) {
                 DB::table('candidate')->insert([
+                    'gid' => md5(random_int(1, 150)*time().Str::random(20)),
                     'role_id' => random_int(1, count($this->roles)),
                     'title' => Str::random(20),
                     'payment' => random_int(1000, 5000),

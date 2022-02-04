@@ -98,7 +98,7 @@ class CandidateControler extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id) {
-        return Candidate::find($id);
+        return Candidate::where('gid',$id)->first();
     }
 
     /**
@@ -124,7 +124,7 @@ class CandidateControler extends Controller {
      * @return \Illuminate\Http\Response Json com mensagem de sucesso ou mensagem de erro de validação
      */
     public function update(Request $request, $id) {
-        $candidate =Candidate::find($id);
+        $candidate =Candidate::where('gid',$id)->first();
         $candidate->update($this->validate($request, $this->rules));
 
         return response()->json([
@@ -140,7 +140,7 @@ class CandidateControler extends Controller {
      */
     public function destroy($id) {
 
-        return Candidate::find($id)->delete();
+        return $candidate =Candidate::where('gid',$id)->first()->delete();
     }
     
 

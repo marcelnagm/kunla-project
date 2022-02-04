@@ -15,6 +15,7 @@ class CreateCandidate extends Migration
     {
         Schema::create('candidate', function (Blueprint $table) {
             $table->id();
+            $table->string('gid')->nullable(false)->unique();            
             $table->unsignedBigInteger('role_id')->nullable(false);
             $table->string('title')->nullable(false);            
             $table->float('payment')->nullable(false)->defaul(0);
