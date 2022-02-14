@@ -32,7 +32,7 @@ $router->delete('/candidate/{id}', 'CandidateControler@destroy');
 });
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('home');
 });
 $router->get('/state', function () use ($router) {
     return State::all();
