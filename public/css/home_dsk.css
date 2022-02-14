@@ -7,7 +7,16 @@ and open the template in the editor.
     Created on : 14 de fev. de 2022, 09:31:36
     Author     : marcel
 */
+@font-face {
+font-family: "Lato";
+src: url("/fonts/Lato-Regular.ttf");
+src: url("/fonts/Lato-Bold.ttf");
+}
 
+
+body{
+    font-family: Lato;
+}
 
 .header nav{
  background: none;    
@@ -16,12 +25,114 @@ and open the template in the editor.
 .header{
     background-image: url('/img/dsk/01-desktop.jpeg');
     min-height: 600px;
-    min-width: 1.440px;
+    min-width: 1440px;
+    background-color: #000000 ;
 }
-.header .navbar-brand{
-    background-image: url('/img/dsk/logo-branca.png');
-   width: 149px;
-   height: 59px;
+.header .subtitle .ex{
+        color: #FCB242;
+}
+.ex2{
+        color: #FCB242;
+        
 }
 
+.header .search #hr{
+    color:  #C2C1C0;
+    padding-left: 2px;
+    padding-top:  24px;
+    
+}
+.section .text-base-2{
+ color: #402A18;
+ line-height: 28px;
+ font-size: 18px;
+ font-weight: 400;
+     margin-top: 25px;
+}
+
+.section .section2-texts{
+    padding-left: 52px;
+}
+
+
+.section .section-3-title{
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 64px;
+    color: #402A18;
+}
+
+.section{
+ min-height:     450px;
+ padding-left: 155px;
+ padding-top: 50px;
+ 
+}
+
+
+
+.subtitle-2{
+   font-weight: 400; 
+   font-size: 56px;
+   line-height: 66px;
+   color: #402A18;
+}
+
+
+.header .search a{
+    width: 206px;
+    padding: 14px;
+    border-radius: 32px;
+    background-color: #FB9E10;
+    color: white;
+}
+.header .search input{
+    width: 23%;
+    height: 46px;
+    border: none;
+    
+} 
+
+.header .search{
+    background-image: url('/img/dsk/bg copy.png');
+    width: 1052px;
+    height: 96px;
+    margin-left: 194px;
+    padding-left: 50px;
+    padding-top: 28px;
+   
+        
+}
+    
+.header .subtitle{
+    margin-left: 194px;
+    margin-top: 276px;
+    font-weight: 700;
+   font-size: 56px;
+   line-height: 64px;
+   color: white;
+}
+    
+.header .navbar-brand{
+   background-image: url('/img/dsk/logo-branca.png') ;
+   width: 149px;
+   height: 59px;
+   margin-left: 185px;
+   
+   
+}
+
+
+.nav-link {
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF !important;
+    
+}
+
+#navbar-top{
+    float: right;
+    margin-left: 200px  ;
+}
 
