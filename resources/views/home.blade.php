@@ -96,7 +96,7 @@
             </div>      
             <div class="row section">  
                 <div class="col-6">  
-                    <img src="{{ url('img/dsk/04-desktop.png') }}" style="width: 100%;    height: 100%;">
+                    <img src="{{ url('img/dsk/04-desktop.png') }}" style="">
                 </div> 
                 <div class="col section-texts-2">  
                     <div class="subtitle-4">
@@ -139,8 +139,6 @@
 
                     <a class="btn btn-change">Sim, quero mudar!</a>
                     <div class="text-base-2" >
-                        <br>
-                        <br>
                         <br>
                         <b> * Programa exclusivo para público de baixa renda.</b> 
                     </div
