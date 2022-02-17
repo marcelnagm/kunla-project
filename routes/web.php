@@ -31,9 +31,9 @@ $router->delete('/candidate/{id}', 'CandidateControler@destroy');
 
 });
 
-$router->get('/', function () use ($router) {
-    return view('home');
-});
+$router->get('/', 'HomeControler@index');
+
+
 $router->get('/state', function () use ($router) {
     return State::all();
 });

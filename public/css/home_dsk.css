@@ -67,7 +67,7 @@ b{
 }
 
 .section .section-texts{
-    padding-left: 5em;
+    padding-left: 2.5em;
 }
 
 .section-texts-2{
@@ -219,9 +219,30 @@ b{
     margin-left: 12.5em  ;
 }
 
+.carousel-caption2{
+    color: black;    
+    border: #ED604F solid 1px;
+    border-radius: 20px;
+    text-align: justify;
+    width: 48%;
+    float:left;
+    margin-right: 10px;
+    padding: 32px 24px 32px 24px;
+}
+
+.carousel-item-title{
+    font-size: 24px;
+    line-height: 28px;
+}
+.carousel-item-text{
+    font-size: 18px;
+    line-height: 28px;
+}
+
+
 .sing1{
      position: absolute;
-     width:29.155em;
+     width:29.155em !important;
      height: 25.32125em;
         left: -11.25em;
             top: 57em;
@@ -229,7 +250,7 @@ b{
 
 .sing2{
      position: absolute;
-     width:29.155em;
+     width:29.155em !important;
      height: 25.32125em;
         left: -16.25em;
         top: 118em;
@@ -237,7 +258,7 @@ b{
 
 .sing3{
 position: absolute;
-    width: 29.155em;
+    width: 29.155em !important;
     float: right;
     height: 24.32125em;
     right: -15em;
@@ -281,4 +302,13 @@ position: absolute;
     color: white;
     font-weight: 400;
     margin-top: 0.625em;
+}
+
+.carousel-inner{
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+    width: 100%;
 }
