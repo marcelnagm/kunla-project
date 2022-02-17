@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <div class="">
+        <div class="container-xxlg container-fluid">
 
             <div class="row">
                 <div class="col-12 header">
@@ -47,16 +47,16 @@
                         <input type="text" placeholder="Faixa salarial">
                         <a type="button" class="btn " >Buscar profissional</a>
 
-                    </div>'
+                    </div>
                 </div>
 
 
-            </div>
+            
 
 
             <div class="row section">  
                 <div class="col-4">  
-                    <img src="{{ url('img/dsk/02-desktop.png') }}">
+                    <img class="img-fluid"  src="{{ url('img/dsk/02-desktop.png') }}">
                 </div>  
                 <div class="col-8 section-texts">  
                     <div class="subtitle-2">
@@ -67,7 +67,7 @@
                     </div>
                 </div>  
             </div>  
-            <img src="{{ url('img/dsk/01_home--6.png') }}" class="sing1">
+            <img   src="{{ url('img/dsk/01_home--6.png') }}" class="sing1">
             <div class="row section">  
                 <div class="col-4 section-3-title section-texts">
 
@@ -79,7 +79,7 @@
 
                 </div>  
             </div>  
-            <img src="{{ url('img/dsk/01_home--7.png') }}" class="sing1">
+            <img  src="{{ url('img/dsk/01_home--7.png') }}" class="sing2">
             <div class="row section">  
                 <div class="col-8 section-texts">  
                     <div class="subtitle-4">
@@ -90,13 +90,14 @@
                     </div>
                 </div>  
                 <div class="col-4">  
-                    <img src="{{ url('img/dsk/03-desktop.png') }}" style="position: relative; top: -10px;">
+                    <img class="img-fluid"  src="{{ url('img/dsk/03-desktop.png') }}" style="position: relative; top: -10px;">
                 </div>  
 
             </div>      
+            <img  src="{{ url('img/dsk/01_home--8.png') }}" class="sing3">
             <div class="row section">  
                 <div class="col-6">  
-                    <img src="{{ url('img/dsk/04-desktop.png') }}" style="">
+                    <img class="img-fluid"  src="{{ url('img/dsk/04-desktop.png') }}" style="">
                 </div> 
                 <div class="col section-texts-2">  
                     <div class="subtitle-4">
@@ -105,14 +106,14 @@
                     <div class="text-base-2">
                         A Kunla é um negócio de impacto social positivo que <b>acredita que formação transforma vidas,</b> e sabe o valor que o profissional certo tem para a empresa.
                         <div class="subtitle-5">
-                            <img src="{{ url('img/dsk/icon1.png') }}" >
+                            <img class="img-fluid"  src="{{ url('img/dsk/icon1.png') }}" >
                             Mapeamento de profissionais
                         </div>
                         <div class="subsection-5">
                             Mapeamos o mercado de profissionais de tecnologia e disponibilizamos na plataforma para ajudar empresas a contratarem de forma ágil.
                         </div>
                         <div class="subtitle-5">
-                            <img src="{{ url('img/dsk/icon2.png') }}" >
+                            <img class="img-fluid"  src="{{ url('img/dsk/icon2.png') }}" >
                             Programa de formação
                         </div>
                         <div class="subsection-5">
@@ -122,11 +123,12 @@
                     </div>
                 </div>
             </div>  
-            <div class="section section-img" style="width: 100%;">  
-
-
-                <img src="{{ url('img/dsk/05-desktop.png') }}" >
-                <div class="right-part">
+            <div class="row section section-img" style="width: 100%;">  
+                
+                <div class="col-7">
+                <img class="img-fluid" src="{{ url('img/dsk/05-desktop.png') }}" >
+                </div>
+                <div class="col-5 right-part">
                     <div class="subtitle-4" >
                         <b>
                             Já pensou em trabalhar na área de 
@@ -138,7 +140,8 @@
                     </div>
 
                     <a class="btn btn-change">Sim, quero mudar!</a>
-                    <div class="text-base-2" >
+                    <div class="text-base-2" style="line-height: 0.75em;" >
+                        <br>
                         <br>
                         <b> * Programa exclusivo para público de baixa renda.</b> 
                     </div
@@ -151,7 +154,7 @@
             <div class="row">
                 <div class="col-8">
                     <div class="footer-logo">
-                        <img src="{{ url('img/dsk/logo-rodape.png') }}" >     
+                        <img  src="{{ url('img/dsk/logo-rodape.png') }}" >     
                         <div class="footer-text">
                             Kunla.com.br © 2022<br></br>
                             Todos os direitos reservados
