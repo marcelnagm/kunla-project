@@ -16,6 +16,8 @@ namespace App\Models;
  */
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Support\Str;
+use App\Models\CandidateRole;
+use App\Models\State;
 
 class Candidate extends Model {
 
@@ -55,8 +57,12 @@ class Candidate extends Model {
      }
     }
     
-    public function __toString() {
-        return $this->role;
+    public function role() {
+        return CandidateRole::find($this->role_id);
+    }
+    
+    public function state() {
+        return State::find($this->state_id);
     }
 
     public function check(){

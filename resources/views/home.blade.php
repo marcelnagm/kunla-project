@@ -84,7 +84,7 @@
                 </div>  
                 <img   src="{{ url('img/dsk/01_home--6.png') }}" class="sing1">
                 <div class="row section">  
-                    <div class="col-4 section-3-title section-texts">
+                    <div class="col-3 section-3-title section-texts" style="margin-right: 3rem;">
 
                         <b>Últimos Profissionais </b>
                         que mapeamos
@@ -92,50 +92,30 @@
                     </div>  
                     <div class="col-8 section-texts">  
                         <div id="myCarousel" class="carousel slide " >                            
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    
-                                        <div class="carousel-caption2" style="color: black;">
-                                            <h4 class="carousel-item-title"><b><span class="ex2">[</span>Analista de Sistemas<span class="ex2">]</span></b></h4>
-                                            <h5 class="carousel-item-text">Local: <b>São Paulo - SP</b></h5>
-                                            <p class="carousel-item-text"'>Possui 7 anos de experiência na área de infraestrutura e é especialista em Cloud. Iniciou sua trajetória como analista de sistema SR em 2009 em um projetos de monitoramento, utilizando banco de dados SQL, Oracle e também…</p>                                            
-                                        </div>
-                                    
-                                
-                                    
+                            <div class="carousel-inner">                               
+                                @for($i = 0; $i<count($candidates);$i++)
+                                <div class="carousel-item @if($i == 0) {{'active'}} @endif">
+                                    @if($i < count($candidates))
+                                    <div class="carousel-caption2" style="color: black;">
+                                        <h4 class="carousel-item-title"><b><span class="ex2">[</span>{{$candidates[$i]->role()}}<span class="ex2">]</span></b></h4>
+                                        <h5 class="carousel-item-text">Local: <b>{{$candidates[$i]->city}} - {{$candidates[$i]->state()->UF}}</b></h5>
+                                        <p class="carousel-item-text"'>{{$candidates[$i]->description}}</p>                                            
+                                    </div>
+                                    @endif
+                                    <?php $i++; ?>
+                                    @if($i < count($candidates))
+                                    <div class="carousel-caption2" style="color: black;">
+                                        <h4 class="carousel-item-title"><b><span class="ex2">[</span>{{$candidates[$i]->role()}}<span class="ex2">]</span></b></h4>
+                                        <h5 class="carousel-item-text">Local: <b>{{$candidates[$i]->city}} - {{$candidates[$i]->state()->UF}}</b></h5>
+                                        <p class="carousel-item-text"'>{{$candidates[$i]->description}}</p>                                            
+                                    </div>
+                                    @endif
 
-                                    
-                                        <div class="  carousel-caption2" style="color: black;">
-                                            <h4 class="carousel-item-title"><span class="ex2">[</span>Analista de Sistemas<span class="ex2">]</span></h4>
-                                            <h5 class="carousel-item-text">Local: <b>São Paulo - SP</b></h5>
-                                            <p class="carousel-item-text"'>Possui 7 anos de experiência na área de infraestrutura e é especialista em Cloud. Iniciou sua trajetória como analista de sistema SR em 2009 em um projetos de monitoramento, utilizando banco de dados SQL, Oracle e também…</p>                                            
-                                        </div>
-                                    
                                 </div>
-                                <div class="carousel-item ">
-                                    
-                                        <div class="carousel-caption2" style="color: black;">
-                                            <h4 class="carousel-item-title"><b><span class="ex2">[</span>Analista de Sistemas<span class="ex2">]</span></b></h4>
-                                            <h5 class="carousel-item-text">Local: <b>São Paulo - SP</b></h5>
-                                            <p class="carousel-item-text"'>Possui 7 anos de experiência na área de infraestrutura e é especialista em Cloud. Iniciou sua trajetória como analista de sistema SR em 2009 em um projetos de monitoramento, utilizando banco de dados SQL, Oracle e também…</p>                                            
-                                        </div>
-                                    
-                                
-                                    
+                                @endfor
 
-                                    
-                                        <div class="  carousel-caption2" style="color: black;">
-                                            <h4 class="carousel-item-title"><span class="ex2">[</span>Analista de Sistemas<span class="ex2">]</span></h4>
-                                            <h5 class="carousel-item-text">Local: <b>São Paulo - SP</b></h5>
-                                            <p class="carousel-item-text"'>Possui 7 anos de experiência na área de infraestrutura e é especialista em Cloud. Iniciou sua trajetória como analista de sistema SR em 2009 em um projetos de monitoramento, utilizando banco de dados SQL, Oracle e também…</p>                                            
-                                        </div>
-                                    
-                                </div>
-                                
-                             
-                                
                             </div>
-                            
+
                             <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="font-black"><<</span>
@@ -256,15 +236,15 @@
             </div>
         </div>
     <body />
-    
-    
+
+
     <script>
 
 
 
 // A $( document ).ready() block.
 $(document).ready(function () {
-   
+
     console.log("ready!");
 });
     </script>

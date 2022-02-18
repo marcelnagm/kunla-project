@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\State;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 
 class HomeControler extends Controller {
@@ -10,34 +11,16 @@ class HomeControler extends Controller {
        
     public function index() {
         
-        
+        $candidates = Candidate::where('published_at', "!=" , NULL)
+                ->where('status_id',1)->orderBy('published_at','desc')->limit(5)->get();;
+//                dd($candidates[0]);
         return view('home', array(
-            'states' => State::all()
+            'states' => State::all(),
+            'candidates' =>$candidates 
         ));
     }
 
-    /**
-     * Armazena um candidato 
-     * A validação segue o modelo abaixo
-     *  'title' => 'required|max:255',
-     *       'role_id' => 'required|max:255',
-     *       'payment' => 'required|max:8',
-     *       'CID' => 'required|max:244',
-     *       'state_id' => 'required|max:2',
-     *       'city' => 'required|max:255',
-     *       'remote' => 'required|max:1',
-     *       'move_out' => 'required|max:1',
-     *       'description' => 'required|max:255',
-     *       'english_level' => 'required|max:1',
-     *       'full_name' => 'required|max:255', 
-     *       'cellphone'=> 'required|max:12', 
-     *       'email' => 'required|max:255', 
-     *       'cv_url' => 'required|max:255' ,
-     *       'status_id'=> 'required|max:1'
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response retorna um json notificando que foi criado ou uma mensagem de erro de validação de campo
-     */
+   
     public function store(Request $request) {
 
         

@@ -77,7 +77,7 @@ b{
 
 .section .section-3-title{
     font-weight: 400;
-    font-size: 3.375rem;
+    font-size: 2.475rem;
     line-height: 1em;
     color: #402A18;
 }
@@ -163,10 +163,11 @@ b{
 
 .header .search a{
     width: 12.68em;
-    padding: 0.875rem;
+    padding: 0.655rem;
     border-radius:  2em;
     background-color: #FB9E10;
     color: white;
+        margin-left: 0.7rem;
 }
 .header .search input{
     width: 23%;
@@ -178,11 +179,11 @@ b{
 .header .search{
     background-image: url('/img/dsk/bg copy.png');
     background-size: cover;
-    width: 61.75em;
+    width: 56.75em;
     height: 6em;
     margin-left: 11.125rem;
     padding-left: 3.125rem;
-    padding-top: 1.56rem
+        padding-top: 1.45rem;
    
         
 }
@@ -200,7 +201,8 @@ b{
    background-image: url('/img/dsk/logo-branca.png') ;
    width:  6.3125em;
    height:  3.6875em;
-   margin-left: 11.5625em;
+       margin-left: 6.5625rem;
+
    
    
 }
@@ -228,6 +230,7 @@ b{
     float:left;
     margin-right: 10px;
     padding: 32px 24px 32px 24px;
+    height: 100%;
 }
 
 .carousel-item-title{
@@ -253,7 +256,7 @@ b{
      width:29.155em !important;
      height: 25.32125em;
         left: -16.25em;
-        top: 118em;
+        top: 114em;
 }
 
 .sing3{
