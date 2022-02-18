@@ -33,12 +33,18 @@ b{
 }
 
 .header{
-    background-image: url('/img/dsk/01-desktop.jpeg');
+    background-image: url('/img/dsk/01-desktop-transparencia-comprimida.jpg');
      background-size: cover;
     min-height: 600px;
     min-width: 100%;
-    background-color: #000000 ;
+    
 }
+
+.header-nobackground{
+    background-image: none !important;
+     background-size: cover;
+}
+
 .header .subtitle .ex{
         color: #FCB242;
 }
@@ -176,6 +182,73 @@ b{
     
 } 
 
+.font-24px{
+    font-size: 1.5em;
+}
+
+.font-18px{
+    font-size: 1.125em;
+}
+
+.p-b-5{
+    padding-bottom: 3em;
+}
+.text-center{
+    text-align: center;
+}
+
+.form-check-input:checked {
+    background-color: #FB9E10;
+    border-color: #FB9E10;
+}
+
+.header .search-container{
+    margin-left:  6.875rem;
+    width: 90%;
+    padding: 2em;
+}
+
+.header .search-pos2{
+    background-color: white;
+    border-radius: 26px;
+   margin-left: 1.125rem;
+   
+        
+}
+.header .search-pos2 input{
+    width: 23%;
+    height:  3.875em;
+    border: none;      
+}
+.header .search-pos2 a{
+    width: 206px;
+    height: 64px;
+    margin-left: 3em;
+    margin-bottom: 0.5em;
+
+}
+
+.result-item h4{
+    font-size: 24px;
+    line-height: 18px;
+    font-weight: 700;
+    margin-bottom: 31px;
+}
+
+.result-item b{
+    font-size: 1em;
+    line-height: 18px;
+    font-weight: 700;
+}
+
+#results{
+    margin-top: 2em;
+}
+
+.result-item{
+   margin-bottom: 2em;  
+}
+
 .header .search{
     background-image: url('/img/dsk/bg copy.png');
     background-size: cover;
@@ -188,6 +261,35 @@ b{
         
 }
     
+.header .subtitle-search {
+    
+     text-align: center;
+    margin-top: 1.25em;
+    font-weight: 700;
+   font-size: 3.5rem;
+   line-height:  3em;
+   color: white;
+}
+.header .subtitle-search2{
+    
+    text-align: center;
+    margin-bottom: 1.25em;
+    font-weight: 400;
+   font-size: 24px;
+   line-height:  2em;
+   color: white;
+}
+.header .subtitle-search3{
+    
+    text-align: center;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    font-weight: 700;
+   font-size: 2em;
+   line-height:  38px;
+   color: white;
+}
+
 .header .subtitle{
     margin-left: 5.125em;
     margin-top: 1.25em;
@@ -199,7 +301,16 @@ b{
     
 .header .navbar-brand{
    background-image: url('/img/dsk/logo-branca.png') ;
-   width:  6.3125em;
+    width: 7.3125em;
+    height: 3.00075em;
+       margin-left: 6.5625rem;
+
+   
+   
+}
+.header .navbar-brand-black{
+   background-image: url('/img/dsk/logo-escura.png') ;
+   width:  9.3125em;
    height:  3.6875em;
        margin-left: 6.5625rem;
 
@@ -207,13 +318,36 @@ b{
    
 }
 
+.nav-item{
+    margin-left: 1rem;
+  
+}
 
+.nav-link-black {
+    font-weight: 900;
+    font-size: 1.25rem;
+    line-height: 1.5em;
+    color: #402A18 !important;
+          text-decoration:  none !important;
+
+    
+}
 .nav-link {
     font-weight: 900;
     font-size: 1.25rem;
     line-height: 1.5em;
     color: #FFFFFF !important;
+      text-decoration:  none !important;
     
+}
+
+.filter-side{
+    background-color: #F6EDE6;
+}
+
+
+.font-black{
+    color:#402A18 !important;
 }
 
 #navbar-top{

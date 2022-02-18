@@ -51,13 +51,11 @@
                         <i class="fa-solid fa-dollar-sign"></i>
                         <select type="text" placeholder="Faixa salarial">
                             <option value="">Selecione um faixa</option>
-                            <option value="1">R$1500 - R$2000</option>
-                            <option value="2">R$2000 - R$2500</option>
-                            <option value="3">R$2500 - R$3000</option>
-                            <option value="4">R$3000 - R$3500</option>
-                            <option value="5">R$3500 - R$4000</option>
-                            <option value="6">R$4000 - R$4500</option>
-                            <option value="7">Acima de R$4500</option>
+                            <option value="1">Até R$3.000</option>
+                            <option value="2">Até R$4.000</option>
+                            <option value="3">Até R$5.000</option>
+                            <option value="4">Até R$6.000</option>
+                            <option value="5">Até R$7.000</option>                            
                         </select>
 
                         <a type="button" class="btn " >Buscar profissional</a>

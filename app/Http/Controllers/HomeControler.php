@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\State;
 use App\Models\Candidate;
+use App\Models\CandidateEnglishLevel;
 use Illuminate\Http\Request;
 
 class HomeControler extends Controller {
@@ -16,6 +17,18 @@ class HomeControler extends Controller {
 //                dd($candidates[0]);
         return view('home', array(
             'states' => State::all(),
+            'candidates' =>$candidates 
+        ));
+    }
+    
+    public function index_search() {
+        
+        $candidates = Candidate::where('published_at', "!=" , NULL)
+                ->where('status_id',1)->orderBy('published_at','desc')->limit(5)->get();;
+//                dd($candidates[0]);
+        return view('search', array(
+            'states' => State::all(),
+            'english_levels' => CandidateEnglishLevel::all(),
             'candidates' =>$candidates 
         ));
     }
