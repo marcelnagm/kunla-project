@@ -11,7 +11,7 @@
         <div class="container-xxlg container-fluid">
 
             <div class="row">
-                <div class="col-12 header header-nobackground">
+                <div class="col-12 header header-nobackground" style="min-height: 0px">
                     <nav class="navbar navbar-expand-lg navbar-light ">
 
                         <a class="navbar-brand-black" href="#">                                                               
@@ -42,127 +42,84 @@
                         Profissionais da área de tecnologia
                     </div>
                    
-                    <div class="search-container filter-side">
-                         <div class="subtitle-search3 font-black">
-                        <b> Encontre o  <span class="ex2">profissional certo</span> para você</b>
-                    </div>
-                        <div class="search-pos2 ">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cargo ou palavra-chave">                        
-                        <i class="fa-solid fa-location-dot"></i>
-                        <select ttype="text" placeholder="Estado">
-                            <option value="">Selecione um estado</option>
-                            @foreach($states as $state)
-                            <option value="{{$state->id}}">{{$state}}</option>
-                            @endforeach
-                        </select>
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <select type="text" placeholder="Faixa salarial">
-                            <option value="">Selecione um faixa</option>
-                            <option value="1">R$1500 - R$2000</option>
-                            <option value="2">R$2000 - R$2500</option>
-                            <option value="3">R$2500 - R$3000</option>
-                            <option value="4">R$3000 - R$3500</option>
-                            <option value="5">R$3500 - R$4000</option>
-                            <option value="6">R$4000 - R$4500</option>
-                            <option value="7">Acima de R$4500</option>
-                        </select>
-
-                        <a type="button" class="btn btn-sm btn-change" >Buscar profissional</a>
-
-                    </div>
-                    </div>
+           
                     
                 </div>
 
                 <div class="row section p-b-5">  
-                    <div class="col-3 filter-side">
-                        <div class="font-24px">
-                            <b> Filtrar    </b>
-                        </div>
-                        
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            Método de Trabalho    
-                            </div>
-                            
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remoto">
-                                <label class="form-check-label" for="remoto">Remoto</label>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="presencial">
-                                <label class="form-check-label" for="presencial">Presencial</label>
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Estado</b>
-                        </div>
-                            
-                            @foreach($states as $state)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$state->name}}">
-                                <label class="form-check-label" for="{{$state->name}}">{{$state}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Cidade</b>
-                        </div>
-                            @foreach($city as $c)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$c['city']}}">
-                                <label class="form-check-label" for="{{$c['city']}}">{{$c['city']}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Nível de Inglês</b>
-                        </div>
-                            
-                            @foreach($english_levels as $english_level)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}">
-                                <label class="form-check-label" for="{{$english_level->level}}-{{$english_level->id}}">{{$english_level}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                         <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
-                    </div>
-                    <div class="col-8 container-fluid">
-                        @foreach($candidates as $candidate)
-                        <div class="container-fluid row" id="results">
-                            <div class="col-8 result-item">
-                                <h4>{{$candidate->role()}}</h4>
-                            <div>
+                    
+                    <div class="col-12 container-fluid">
+                        <h1> <b>{{$candidate->role()}} </b></h1>
+                       
+                           
+                        <p class="text-justify font-18px">
+                            {{$candidate->description}}
+                        </p>
+                        @if($candidate->doctor_degree != null)
+                        <p class="text-justify font-18px">
+                            <b> Doutorado: 
+                            {{$candidate->doctor_degree}}
+                            </b>
+                        </p>
+                        @endif
+                        @if($candidate->master_degree != null)
+                        <p class="text-justify font-18px">
+                            <b>Mestrado: </b>
+                            {{$candidate->master_degree}}
+                        </p>
+                        @endif
+                        @if($candidate->mba_degree != null)
+                        <p class="text-justify font-18px">
+                            <b>MBA: </b>
+                            {{$candidate->mba_degree}}
+                        </p>
+                        @endif
+                        @if($candidate->spec_degree != null)
+                        <p class="text-justify font-18px">
+                            <b>Pós-graduação: </b>
+                            {{$candidate->spec_degree}}
+                        </p>
+                        @endif
+                        @if($candidate->superior_degree != null)
+                        <p class="text-justify font-18px">
+                            <b> Ensino Superior:</b>
+                            {{$candidate->superior_degree}}
+                        </p>
+                        @endif
+                        @if($candidate->tecnical_degree != null)
+                        <p class="text-justify font-18px">
+                            <b> Ensino Técnico:</b>
+                            {{$candidate->tecnical_degree}}
+                        </p>
+                        @endif
+                         <p class="text-justify font-18px">
+                            <b> Inglês:</b>
+                            {{$candidate->english_level()}}
+                        </p>
+                         <div>
                                 <b>Pretensão Salarial:
-                                    <span class="ex2">R$<?php echo number_format($candidate->payment,2)?></span>    
+                                    <span class="">R$<?php echo number_format($candidate->payment,2)?></span>    
                             </b>
                             </div>
-                            <div>                               
+                         <p class="text-justify font-18px">
+                            <b> CID:</b>
+                            {{$candidate->CID}}
+                         </p>
+                         <div>                               
                             <b>Local: 
-                                <span class="ex2">
+                                <span class="">
                                 @if($candidate->move_out)
                                  Disponivel para mudança
                                 @else
-                                {{$candidate->city}} - {{$candidate->state()->UF}} 
+                                {{$candidate->city}} - {{$candidate->state()}} 
                                 @endif
                             </span>
                             </b>
                             </div>
-                            </div>
-                            <div class="col-4">
-                                <a class="btn-change text-decoration-none btn-lgx">Ver detalhes</a>
-                            </div>                                                        
-                        </div>
-                        <hr>
-                        @endforeach
-                        <div id="see-more" class="text-center">
-                                <a class="btn btn-lg ex2">Ver Mais</a>
-                        </div>
+                          <p class="text-justify font-18px">
+                            <b> Atualizado em:</b>
+                            {{$candidate->updated_at}}
+                          </p>
                     </div>
                     
                 </div>                  

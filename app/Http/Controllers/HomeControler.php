@@ -24,12 +24,26 @@ class HomeControler extends Controller {
     public function index_search() {
         
         $candidates = Candidate::where('published_at', "!=" , NULL)
-                ->where('status_id',1)->orderBy('published_at','desc')->limit(5)->get();;
-//                dd($candidates[0]);
+                ->where('status_id',1)->orderBy('published_at','desc')->limit(20);
+        $city = $candidates;
+        $candidates  = $candidates->get() ;
+//        dd($candidates->pluck('state_id'));
+//        dd(State::whereIn('id', $candidates->pluck('state_id'))->get());
+        $city = $city->
+                select('city')->groupBy('city')->get()->toArray() ; 
+        
         return view('search', array(
-            'states' => State::all(),
+            'states' => State::whereIn('id', $candidates->pluck('state_id'))->get(),
+            'city' =>  $city,
             'english_levels' => CandidateEnglishLevel::all(),
-            'candidates' =>$candidates 
+            'candidates' =>$candidates
+        ));
+    }
+    public function detail($gid) {
+        
+        $candidate = Candidate::where('gid',$gid)->first();
+        return view('detail', array(            
+            'candidate' =>$candidate
         ));
     }
 

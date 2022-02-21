@@ -33,6 +33,7 @@ $router->delete('/candidate/{id}', 'CandidateControler@destroy');
 
 $router->get('/', 'HomeControler@index');
 $router->get('/search', 'HomeControler@index_search');
+$router->get('/detail/{gid}', 'HomeControler@detail');
 
 
 $router->get('/state', function () use ($router) {

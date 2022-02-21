@@ -16,7 +16,8 @@ namespace App\Models;
  */
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Support\Str;
-use App\Models\CandidateRole;
+use App\Models\CandidteRole;
+use App\Models\CandidateEnglishLevel;
 use App\Models\State;
 
 class Candidate extends Model {
@@ -65,8 +66,8 @@ class Candidate extends Model {
         return State::find($this->state_id);
     }
 
-    public function check(){
-        
+    public function english_level(){
+          return CandidateEnglishLevel::find($this->english_level);
     }
     
 }

@@ -17,14 +17,14 @@ class CreateCandidate extends Migration
             $table->id();
             $table->string('gid')->nullable(false)->unique();            
             $table->unsignedBigInteger('role_id')->nullable(false);
-            $table->string('title')->nullable(false);            
+            $table->text('title')->nullable(false);            
             $table->float('payment')->nullable(false)->defaul(0);
             $table->string('CID')->nullable(false); 
             $table->unsignedBigInteger('state_id')->nullable(false);
             $table->string('city')->nullable(false);             
             $table->boolean('remote')->defaul(0)->nullable(false);            
             $table->boolean('move_out')->defaul(0)->nullable(false);                        
-            $table->string('description')->nullable(false);             
+            $table->text('description')->nullable(false);             
             $table->string('tecnical_degree')->nullable(true);             
             $table->string('superior_degree')->nullable(true);             
             $table->string('spec_degree')->nullable(true);             

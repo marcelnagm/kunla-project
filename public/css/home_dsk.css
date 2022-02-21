@@ -188,6 +188,7 @@ b{
 
 .font-18px{
     font-size: 1.125em;
+        margin-bottom: 10px;
 }
 
 .p-b-5{
@@ -215,6 +216,12 @@ b{
    
         
 }
+.header .search-pos2 i{
+    color: #FCB242 ;
+   
+        
+}
+
 .header .search-pos2 input{
     width: 23%;
     height:  3.875em;
@@ -291,12 +298,13 @@ b{
 }
 
 .header .subtitle{
-    margin-left: 5.125em;
+
     margin-top: 1.25em;
     font-weight: 700;
    font-size: 2.7rem;
    line-height:  3em;
    color: white;
+       text-align: center;
 }
     
 .header .navbar-brand{
@@ -449,3 +457,19 @@ position: absolute;
     height: 100%;
     width: 100%;
 }
+
+#see-more{
+    width: 100%;
+    height: 56px;
+    border: #FCB242 solid 3px;
+    border-radius: 25px;
+}
+
+.btn-lgx{
+    width: 167px;
+    height: 56px;
+    border-radius: 28px;
+}
+
+
+
