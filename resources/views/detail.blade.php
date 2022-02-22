@@ -41,24 +41,42 @@
                     <div class="subtitle-search2 font-black">
                         Profissionais da área de tecnologia
                     </div>
-                   
-           
-                    
+
+
+
                 </div>
 
                 <div class="row section p-b-5">  
-                    
+
                     <div class="col-12 container-fluid">
-                        <h1> <b>{{$candidate->role()}} </b></h1>
-                       
-                           
+                        <h2> <b>{{$candidate->role()}} </b></h2>
+                        <br>
+                        <div class="font-16px">
+                            <b>Pretensão Salarial:
+                                <span class="">R$<?php echo number_format($candidate->payment, 2) ?></span>    
+                            </b>
+                        </div>   
+                        <div class="font-16px">                               
+                            <b>Local: 
+                                <span class="">
+                                    @if($candidate->move_out)
+                                    Disponivel para mudança
+                                    @else
+                                    {{$candidate->city}} - {{$candidate->state()}} 
+                                    @endif
+                                </span>
+                            </b>
+                        </div>
+                        <br>
                         <p class="text-justify font-18px">
                             {{$candidate->description}}
                         </p>
+
+
                         @if($candidate->doctor_degree != null)
                         <p class="text-justify font-18px">
                             <b> Doutorado: 
-                            {{$candidate->doctor_degree}}
+                                {{$candidate->doctor_degree}}
                             </b>
                         </p>
                         @endif
@@ -92,36 +110,40 @@
                             {{$candidate->tecnical_degree}}
                         </p>
                         @endif
-                         <p class="text-justify font-18px">
+                        <p class="text-justify font-18px">
                             <b> Inglês:</b>
                             {{$candidate->english_level()}}
                         </p>
-                         <div>
-                                <b>Pretensão Salarial:
-                                    <span class="">R$<?php echo number_format($candidate->payment,2)?></span>    
-                            </b>
-                            </div>
-                         <p class="text-justify font-18px">
+
+                        <p class="text-justify font-18px">
                             <b> CID:</b>
                             {{$candidate->CID}}
-                         </p>
-                         <div>                               
-                            <b>Local: 
-                                <span class="">
-                                @if($candidate->move_out)
-                                 Disponivel para mudança
-                                @else
-                                {{$candidate->city}} - {{$candidate->state()}} 
-                                @endif
-                            </span>
-                            </b>
-                            </div>
-                          <p class="text-justify font-18px">
+                        </p>
+                        @if($candidate->move_out)
+                        <b class="font-18px">
+                            Possui disponibilidade de mudança
+                        </b>
+                        @endif
+                        <p class="text-justify font-18px">
                             <b> Atualizado em:</b>
                             {{$candidate->updated_at}}
-                          </p>
+                        </p>
                     </div>
-                    
+                    <div class="col-12 bottom-section-detail container-fluid">
+                        <div class="font-18px">
+                            <b>Quer conhecer esse profissional? </b>
+                        </div >
+                        <b class="font-16px">Fale conosco:<br>
+                            <a href="tel:(11) 9 9327-1509"  class="ex2 text-decoration-none">(11) 9 9327-1509</a> ou
+                            <a href="mailto:contato@kunla.com.br" class="ex2 text-decoration-none">contato@kunla.com.br</a>
+                            <br>
+                            Profissional: <span class="ex2">{{$candidate->gid}}</span>
+                        </b>
+                        <br>
+                        <br>
+                        <a href="#" onclick="history.back()" type="button" class="btn btn-lgxx btn-change m-t-10"  >Voltar</a>
+                    </div>
+
                 </div>                  
                 <div class="footer">
                     <div class="row">

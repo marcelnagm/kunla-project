@@ -155,7 +155,7 @@
                             </div>
                             </div>
                             <div class="col-4">
-                                <a class="btn-change text-decoration-none btn-lgx">Ver detalhes</a>
+                                <a class="btn-change text-decoration-none btn-lgx" href="/detail/{{$candidate->gid}}">Ver detalhes</a>
                             </div>                                                        
                         </div>
                         <hr>

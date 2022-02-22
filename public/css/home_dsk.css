@@ -222,11 +222,31 @@ b{
         
 }
 
+.header .search-pos2 select{
+    width: 20%;
+    height:  2.875em;
+    border: none;  
+    border-radius: 10px;
+    font-size: 20px;    
+    margin-right: 10px;
+}
+
+.header .search-pos2 select option{
+    
+    height:  2.875em;
+    border: none;  
+    border-radius: 10px;
+    font-size: 20px;    
+    margin-right: 10px;
+}
+
 .header .search-pos2 input{
     width: 23%;
     height:  3.875em;
-    border: none;      
+    border: none;  
+    font-size: 20px;    
 }
+
 .header .search-pos2 a{
     width: 206px;
     height: 64px;
@@ -360,7 +380,7 @@ b{
 
 #navbar-top{
     float: right;
-    margin-left: 12.5em  ;
+    margin-left: 33.875rem  ;
 }
 
 .carousel-caption2{
@@ -471,5 +491,24 @@ position: absolute;
     border-radius: 28px;
 }
 
+.m-t-10{
+ margin-top:10px;    
+}
 
+.btn-lgxx{
+    width: 350px;
+    height: 56px;
+    border-radius: 28px;
+}
 
+.font-16px{
+    font-size:16px;
+}
+
+.font-14px{
+    font-size:16px;
+}
+
+.bottom-section-detail{
+    margin-top: 80px;
+}
