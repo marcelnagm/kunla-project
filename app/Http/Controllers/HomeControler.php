@@ -6,6 +6,7 @@ use App\Models\State;
 use App\Models\Candidate;
 use App\Models\CandidateEnglishLevel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CandidateControler;
 
 class HomeControler extends Controller {
 
@@ -21,13 +22,14 @@ class HomeControler extends Controller {
         ));
     }
     
-    public function index_search() {
+    public function index_search(Request $request) {
+          $result = (new CandidateControler)->search($request);
+//          dd ($result);
         
-        $candidates = Candidate::where('published_at', "!=" , NULL)
-                ->where('status_id',1)->orderBy('published_at','desc')->limit(20);
-        $city = $candidates;
-        $candidates  = $candidates->get() ;
-//        dd($candidates->pluck('state_id'));
+        
+        $candidates  = $result->cursorPaginate(10) ;
+        $city  = $result;
+//       dd ($candidates);
 //        dd(State::whereIn('id', $candidates->pluck('state_id'))->get());
         $city = $city->
                 select('city')->groupBy('city')->get()->toArray() ; 
@@ -36,9 +38,12 @@ class HomeControler extends Controller {
             'states' => State::whereIn('id', $candidates->pluck('state_id'))->get(),
             'city' =>  $city,
             'english_levels' => CandidateEnglishLevel::all(),
-            'candidates' =>$candidates
+            'candidates' =>$candidates->items(),
+            'paginator' => $candidates
         ));
     }
+    
+    
     public function detail($gid) {
         
         $candidate = Candidate::where('gid',$gid)->first();

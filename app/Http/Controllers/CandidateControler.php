@@ -175,14 +175,17 @@ class CandidateControler extends Controller {
          * @var $search 
          */
 //        $search = new luminate\Database\Eloquent\Builder();
-        $search =Candidate::select(); 
+        $search =Candidate::select()->where('published_at', "!=" , NULL)
+                ->where('status_id',1)->orderBy('published_at','desc'); 
         foreach ($this->searchble as $key => $val){            
-            if ($request->has($key)){
+            if ($request->has($key) &&  $request->input($key) != ''){
                 if ($val == '='){
                       $search= $search->where($key,$request->input($key));
                 }
-                if ($val == 'in'){
+                if ($val == 'in'){                      
+                      if (is_array($request->input($key)))
                       $search= $search->whereIn($key,$request->input($key));
+                      else $search= $search->where($key,$request->input($key));
                 }
                 if ($val == '%'){
                     if ($key == 'role_id'){
@@ -199,7 +202,7 @@ class CandidateControler extends Controller {
                }                              
             }
         }
-//        dd($request->input('order_by'));
+        if ($request->has('order_by')){
         foreach($request->input('order_by')[0] as $order => $type) {
 //                      
             $search->orderBy($order,$type);                
@@ -212,9 +215,10 @@ class CandidateControler extends Controller {
                      $search->orderBy($order,$type);                
                     }            
         }
+        }
 //         
 //        dd($search->toSql());
-        return $search->paginate(10);
+        return $search;
     }
 
 }

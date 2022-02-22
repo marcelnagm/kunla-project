@@ -21,6 +21,12 @@ class CandidateRole extends Model {
         'role'
     ];
     
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
+    
 //    protected $hidden = [ ‘password’ ];
     
     public function __toString() {

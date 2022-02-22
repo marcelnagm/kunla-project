@@ -47,29 +47,29 @@
                         <b> Encontre o  <span class="ex2">profissional certo</span> para você</b>
                     </div>
                         <div class="search-pos2 ">
+                            <form  id='my_form' action="/search" method="POST">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cargo ou palavra-chave">                        
+                        <input type="text" name='title' placeholder="Cargo ou palavra-chave">                        
                         <i class="fa-solid fa-location-dot"></i>
-                        <select ttype="text" placeholder="Estado">
+                        <select name='state_id' type="text" placeholder="Estado">
                             <option value="">Selecione um estado</option>
                             @foreach($states as $state)
                             <option value="{{$state->id}}">{{$state}}</option>
                             @endforeach
                         </select>
                         <i class="fa-solid fa-dollar-sign"></i>
-                        <select type="text" placeholder="Faixa salarial">
+                        <select name='payment_max' placeholder="Faixa salarial">
                             <option value="">Selecione um faixa</option>
-                            <option value="1">R$1500 - R$2000</option>
-                            <option value="2">R$2000 - R$2500</option>
-                            <option value="3">R$2500 - R$3000</option>
-                            <option value="4">R$3000 - R$3500</option>
-                            <option value="5">R$3500 - R$4000</option>
-                            <option value="6">R$4000 - R$4500</option>
-                            <option value="7">Acima de R$4500</option>
+                               <option value="">Selecione um faixa</option>
+                            <option value="3000">Até R$3.000</option>
+                            <option value="4000">Até R$4.000</option>
+                            <option value="5000">Até R$5.000</option>
+                            <option value="6000">Até R$6.000</option>
+                            <option value="7000">Até R$7.000</option>                            
                         </select>
 
                         <a type="button" class="btn btn-sm btn-change" >Buscar profissional</a>
-
+                            </forn>
                     </div>
                     </div>
                     
@@ -133,33 +133,9 @@
                          <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
                     </div>
                     <div class="col-8 container-fluid">
-                        @foreach($candidates as $candidate)
-                        <div class="container-fluid row" id="results">
-                            <div class="col-8 result-item">
-                                <h4>{{$candidate->role()}}</h4>
-                            <div>
-                                <b>Pretensão Salarial:
-                                    <span class="ex2">R$<?php echo number_format($candidate->payment,2)?></span>    
-                            </b>
-                            </div>
-                            <div>                               
-                            <b>Local: 
-                                <span class="ex2">
-                                @if($candidate->move_out)
-                                 Disponivel para mudança
-                                @else
-                                {{$candidate->city}} - {{$candidate->state()->UF}} 
-                                @endif
-                            </span>
-                            </b>
-                            </div>
-                            </div>
-                            <div class="col-4">
-                                <a class="btn-change text-decoration-none btn-lgx" href="/detail/{{$candidate->gid}}">Ver detalhes</a>
-                            </div>                                                        
-                        </div>
-                        <hr>
-                        @endforeach
+                        <div id="results">
+                        @include('desktop.list')    
+                        </div>                        
                         <div id="see-more" class="text-center">
                                 <a class="btn btn-lg ex2">Ver Mais</a>
                         </div>

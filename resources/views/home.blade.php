@@ -39,27 +39,28 @@
                         <span class="ex">&lt; /> </span>Encontre o profissional que precisa_ 
                     </div>
                     <div class="search">
+                        <form  id='my_form' action="/search" method="POST">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cargo ou palavra-chave">                        
+                        <input name='title' type="text" placeholder="Cargo ou palavra-chave">                        
                         <i class="fa-solid fa-location-dot"></i>
-                        <select ttype="text" placeholder="Estado">
+                        <select  name='state_id' placeholder="Estado">
                             <option value="">Selecione um estado</option>
                             @foreach($states as $state)
                             <option value="{{$state->id}}">{{$state}}</option>
                             @endforeach
                         </select>
                         <i class="fa-solid fa-dollar-sign"></i>
-                        <select type="text" placeholder="Faixa salarial">
+                        <select name='payment_max'  placeholder="Faixa salarial">
                             <option value="">Selecione um faixa</option>
-                            <option value="1">Até R$3.000</option>
-                            <option value="2">Até R$4.000</option>
-                            <option value="3">Até R$5.000</option>
-                            <option value="4">Até R$6.000</option>
-                            <option value="5">Até R$7.000</option>                            
+                            <option value="3000">Até R$3.000</option>
+                            <option value="4000">Até R$4.000</option>
+                            <option value="5000">Até R$5.000</option>
+                            <option value="6000">Até R$6.000</option>
+                            <option value="7000">Até R$7.000</option>                            
                         </select>
 
-                        <a type="button" class="btn " >Buscar profissional</a>
-
+                        <a type="button" class="btn"  href="javascript:{}" onclick="document.getElementById('my_form').submit();" >Buscar profissional</a>
+                        </form>
                     </div>
                 </div>
 

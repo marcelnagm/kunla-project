@@ -126,7 +126,7 @@
                         @endif
                         <p class="text-justify font-18px">
                             <b> Atualizado em:</b>
-                            {{$candidate->updated_at}}
+                            {{$candidate->updated_at->format('d/m/Y');}}
                         </p>
                     </div>
                     <div class="col-12 bottom-section-detail container-fluid">

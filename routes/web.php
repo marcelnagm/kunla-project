@@ -32,7 +32,7 @@ $router->delete('/candidate/{id}', 'CandidateControler@destroy');
 });
 
 $router->get('/', 'HomeControler@index');
-$router->get('/search', 'HomeControler@index_search');
+$router->post('/search', 'HomeControler@index_search');
 $router->get('/detail/{gid}', 'HomeControler@detail');
 
 

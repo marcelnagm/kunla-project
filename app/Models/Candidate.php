@@ -36,6 +36,12 @@ class Candidate extends Model {
         
     ];
     
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
+    
     protected $required = [
         'role_id',
         'title', 
