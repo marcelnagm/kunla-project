@@ -111,6 +111,13 @@ b{
     margin-right: 10px;
 }
 
+.hide{
+    display:none !important;
+}
+
+.show{
+    display:block !important;
+}
 
 .section-img .right-part{
     width: 28em;

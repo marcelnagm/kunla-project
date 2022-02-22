@@ -60,7 +60,18 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('session');
 
+ $app->bind(Illuminate\Session\SessionManager::class, function ($app) {    
+    return $app->make('session');
+});
+
+$app->middleware([
+    'Illuminate\Session\Middleware\StartSession'
+]);
+$app->register(Illuminate\Session\SessionServiceProvider::class);
+
+ 
 /*
 |--------------------------------------------------------------------------
 | Register Middleware

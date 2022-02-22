@@ -32,7 +32,8 @@ class CandidateControler extends Controller {
             'payment_max' => 'max',
             'state_id' => 'in',
          'city' => '%',
-        'remote' => '='
+        'remote' => '=',
+        'english_level' => '='
     );
     
    /**
@@ -179,6 +180,7 @@ class CandidateControler extends Controller {
                 ->where('status_id',1)->orderBy('published_at','desc'); 
         foreach ($this->searchble as $key => $val){            
             if ($request->has($key) &&  $request->input($key) != ''){
+                $param[$key] = $request->input($key);
                 if ($val == '='){
                       $search= $search->where($key,$request->input($key));
                 }
@@ -216,9 +218,16 @@ class CandidateControler extends Controller {
                     }            
         }
         }
+        if ($request->input('page') != null){
+            $search->skip(10 * $request->input('page'))->take(10);
+        }
 //         
-//        dd($search->toSql());
-        return $search;
+//       dd($search->toSql());
+
+        return array(
+            'search' => $search,
+            'param' => $param
+        );
     }
 
 }

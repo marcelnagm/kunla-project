@@ -41,38 +41,51 @@
                     <div class="subtitle-search2 font-black">
                         Profissionais da área de tecnologia
                     </div>
-                   
+
                     <div class="search-container filter-side">
-                         <div class="subtitle-search3 font-black">
-                        <b> Encontre o  <span class="ex2">profissional certo</span> para você</b>
-                    </div>
+                        <div class="subtitle-search3 font-black">
+                            <b> Encontre o  <span class="ex2">profissional certo</span> para você</b>
+                        </div>
                         <div class="search-pos2 ">
                             <form  id='my_form' action="/search" method="POST">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" name='title' placeholder="Cargo ou palavra-chave">                        
-                        <i class="fa-solid fa-location-dot"></i>
-                        <select name='state_id' type="text" placeholder="Estado">
-                            <option value="">Selecione um estado</option>
-                            @foreach($states as $state)
-                            <option value="{{$state->id}}">{{$state}}</option>
-                            @endforeach
-                        </select>
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <select name='payment_max' placeholder="Faixa salarial">
-                            <option value="">Selecione um faixa</option>
-                               <option value="">Selecione um faixa</option>
-                            <option value="3000">Até R$3.000</option>
-                            <option value="4000">Até R$4.000</option>
-                            <option value="5000">Até R$5.000</option>
-                            <option value="6000">Até R$6.000</option>
-                            <option value="7000">Até R$7.000</option>                            
-                        </select>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" name='title' placeholder="Cargo ou palavra-chave"
+                                       @if (isset ($param['title']))
+                                       value='{{$param['title']}}'
+                                       @endif
+                                       >                        
+                                <i class="fa-solid fa-location-dot"></i>
+                                <select name='state_id' type="text" placeholder="Estado">
+                                    <option value="">Selecione um estado</option>
+                                    @foreach($statesAll as $state)
+                                    <option value="{{$state->id}}"
+                                            @if (isset ($param['state_id']))
+                                            @if ($param['state_id'] ==$state->id)
+                                        {{'selected'}}
+                                        @endif
+                                        @endif
+                                        >{{$state}}</option>
+                                    @endforeach
+                                </select>
+                                <i class="fa-solid fa-dollar-sign"></i>
 
-                        <a type="button" class="btn btn-sm btn-change" >Buscar profissional</a>
-                            </forn>
+                                <select name='payment_max' placeholder="Faixa salarial">
+                                    <option value="">Selecione um faixa</option>                               
+                                    @foreach($payment_max as $p)
+                                    <option value="{{$p}}"
+                                            @if (isset ($param['payment_max']))
+                                            @if ($param['payment_max'] ==$p)
+                                            {{'selected'}}
+                                            @endif
+                                            @endif
+                                            >Até R${{$p}}</option>
+                                    @endforeach
+                                </select>
+                                <a class="btn btn-sm btn-change" href="javascript:{}" onclick="document.getElementById('my_form').submit();">Buscar profissional</a>
+                                </forn>
+                        </div>
                     </div>
-                    </div>
-                    
+
                 </div>
 
                 <div class="row section p-b-5">  
@@ -80,67 +93,88 @@
                         <div class="font-24px">
                             <b> Filtrar    </b>
                         </div>
-                        
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            Método de Trabalho    
+                        <form id="form_filter"  action="/search" method="POST">
+                            @foreach($param as $p => $v)
+                            <input type="hidden" name="{{$p}}" value="{{$v}}">                        
+
+                            @endforeach    
+                            <input type="submit" class="" value="send">
+                            <div class="container-fluid">
+                                <div class="font-18px ex2">
+                                    Método de Trabalho    
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="radio" class="form-check-input" id="remoto" name="remote" onclick="filter_field(this)" value="true" >
+                                    <label class="form-check-label" for="remoto">Remoto</label>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="radio" class="form-check-input" id="presencial" name="remote" onclick="filter_field(this)" value="true">
+                                    <label class="form-check-label" for="presencial">Presencial</label>
+                                </div>
                             </div>
-                            
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="remoto">
-                                <label class="form-check-label" for="remoto">Remoto</label>
+                            <div class="container-fluid">
+                                <div class="font-18px ex2">
+                                    <b> Estado</b>
+                                </div>
+
+                                @foreach($states as $state)
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" name="state_id" id="{{$state->name}}" 
+                                           @if (isset ($param['state_id'] ))
+                                           @if ($param['state_id'] ==$state->id)
+                                    {{'checked'}}
+                                    @endif>
+                                    @endif
+                                    " onclick="filter_field(this)" 
+                                    >
+                                    <label class="form-check-label" for="{{$state->name}}">{{$state}}</label>
+                                </div>
+                                @endforeach
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="presencial">
-                                <label class="form-check-label" for="presencial">Presencial</label>
+                            <div class="container-fluid">
+                                <div class="font-18px ex2">
+                                    <b> Cidade</b>
+                                </div>
+                                @foreach($city as $c)
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" name="city" id="{{$c['city']}}">
+                                    <label class="form-check-label" for="{{$c['city']}}">{{$c['city']}}</label>
+                                </div>
+                                @endforeach
                             </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Estado</b>
-                        </div>
-                            
-                            @foreach($states as $state)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$state->name}}">
-                                <label class="form-check-label" for="{{$state->name}}">{{$state}}</label>
+                            <div class="container-fluid">
+                                <div class="font-18px ex2">
+                                    <b> Nível de Inglês</b>
+                                </div>
+
+                                @foreach($english_levels as $english_level)
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}" name="english_level">
+                                    <label class="form-check-label" for="{{$english_level->level}}-{{$english_level->id}}">{{$english_level}}</label>
+                                </div>
+                                
+                                    @endforeach
                             </div>
-                            @endforeach
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Cidade</b>
-                        </div>
-                            @foreach($city as $c)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$c['city']}}">
-                                <label class="form-check-label" for="{{$c['city']}}">{{$c['city']}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                        <div class="container-fluid">
-                            <div class="font-18px ex2">
-                            <b> Nível de Inglês</b>
-                        </div>
-                            
-                            @foreach($english_levels as $english_level)
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}">
-                                <label class="form-check-label" for="{{$english_level->level}}-{{$english_level->id}}">{{$english_level}}</label>
-                            </div>
-                            @endforeach
-                        </div>
-                         <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
+                            <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
+                        </form>
                     </div>
                     <div class="col-8 container-fluid">
                         <div id="results">
-                        @include('desktop.list')    
-                        </div>                        
-                        <div id="see-more" class="text-center">
-                                <a class="btn btn-lg ex2">Ver Mais</a>
+                            @include('desktop.list')    
+                        </div>           
+
+                        <div id="see-more" class="text-center 
+                             @if(!$paginator->hasPages())
+                             {{'hide'}}
+                             @endif
+                             ">                                
+                            <a class="btn btn-lg ex2"
+                               onclick="see_more()">Ver Mais</a>
                         </div>
+
                     </div>
-                    
+
                 </div>                  
                 <div class="footer">
                     <div class="row">
@@ -179,17 +213,45 @@
 
                 </div>
             </div>
+
             <body />
 
 
             <script>
 
+                function filter_field( ) {
 
+                    document.getElementById('my_form').submit();
+                }
+
+                var page = 2;
+                function see_more() {
+                    console.log('teste');
+                    var http = new XMLHttpRequest();
+                    var url = '/search_more';
+                    var data = new FormData();
+                            @foreach($param as $p => $v)
+                    data.append('{{$p}}', '{{$v}}');
+                    @endforeach
+                            data.append('page', page);
+                    http.open('POST', url, true);
+//Send the proper header information along with the request                
+                    http.onreadystatechange = function () {//Call a function when the state changes.
+                        if (http.readyState == 4 && http.status == 200) {
+                            console.log(http.responseText);
+//        console.log("Data: " + data + "\nStatus: " + status);
+                            $('#results').append(http.responseText);
+                            page++;
+                        }
+                    }
+                    http.send(data);
+                }
 
 // A $( document ).ready() block.
-$(document).ready(function () {
+                $(document).ready(function () {
 
-    console.log("ready!");
-});
+
+                    console.log("ready!");
+                });
             </script>
             </html>

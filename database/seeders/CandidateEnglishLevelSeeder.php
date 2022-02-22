@@ -58,7 +58,7 @@ class CandidateEnglishLevelSeeder extends Seeder {
             ]);
            
         }
-         for ($i = 0; $i < 85; $i++) {
+         for ($i = 0; $i < 500; $i++) {
                 DB::table('candidate')->insert([
                     'gid' => md5(random_int(1, 150)*time().Str::random(20)),
                     'role_id' => random_int(1, count($this->roles)),
@@ -75,8 +75,10 @@ class CandidateEnglishLevelSeeder extends Seeder {
                     'cellphone' => random_int(11111111, 99999999),
                     'email' => Str::random(10).'@'.Str::random(10).".".Str::random(3)
                     , 'cv_url' =>'http://'.Str::random(10).'.'.Str::random(10).".".Str::random(3), 
-        'status_id' => random_int(1, 3),
+//        'status_id' => random_int(1, 3),
+        'status_id' => 1,
                     
+                    'published_at' => date("Y-m-d H:i:s"),
                     'created_at' => date("Y-m-d H:i:s"),
                     'updated_at' => date("Y-m-d H:i:s")
                 ]);

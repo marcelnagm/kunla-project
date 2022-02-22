@@ -1,7 +1,7 @@
  @foreach($candidates as $candidate)
                         <div class="container-fluid row" >
                             <div class="col-8 result-item">
-                                <h4>{{$candidate->role()}}</h4>
+                                <h4>{{$candidate->role()}} -- {{$candidate->id}}</h4>
                             <div>
                                 <b>Pretensão Salarial:
                                     <span class="ex2">R$<?php echo number_format($candidate->payment,2)?></span>    

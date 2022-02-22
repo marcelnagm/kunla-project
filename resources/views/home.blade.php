@@ -52,11 +52,9 @@
                         <i class="fa-solid fa-dollar-sign"></i>
                         <select name='payment_max'  placeholder="Faixa salarial">
                             <option value="">Selecione um faixa</option>
-                            <option value="3000">Até R$3.000</option>
-                            <option value="4000">Até R$4.000</option>
-                            <option value="5000">Até R$5.000</option>
-                            <option value="6000">Até R$6.000</option>
-                            <option value="7000">Até R$7.000</option>                            
+                            @foreach($payment_max as $p)
+                            <option value="{{$p}}">Até R${{$p}}</option>
+                            @endforeach
                         </select>
 
                         <a type="button" class="btn"  href="javascript:{}" onclick="document.getElementById('my_form').submit();" >Buscar profissional</a>
