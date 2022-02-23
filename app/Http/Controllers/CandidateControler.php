@@ -30,9 +30,9 @@ class CandidateControler extends Controller {
         'payment_min' => 'min',
         'payment_max' => 'max',
         'state_id' => 'in',
-        'city' => '%',
-        'remote' => '=',
-        'english_level' => '='
+        'city' => 'in',
+        'remote' => 'in',
+        'english_level' => 'in'
     );
 
     /**
@@ -173,23 +173,48 @@ class CandidateControler extends Controller {
 //        dd ($request->all());
 
         $data = $request->all();
-        $states = array();
-        if (array_key_exists('state_id', $data) || array_key_exists('state_id_', $data)) {
+        
+        if (isset($data['state_id']) ) {
             if ($data['state_id'] != '') {
                 $states[] = $data['state_id'];
                 $data['state_id'] = $states;
             }else{
             unset($data['state_id']);
             }
+            } 
+            $states = array();
             foreach ($data as $d => $val) {
-
                 if (strpos($d, 'state_id_') !== false) {
-                    echo $d;
+                    unset($data[$d]);
                     $states[] = str_replace('state_id_', '', $d);
                     $data['state_id'] = $states;
                 }
             }
-        } 
+            $citys = array ();
+            foreach ($data as $d => $val) {
+                if (strpos($d, 'city_') !== false) {
+                    unset($data[$d]);
+                    $citys[] = str_replace('city_', '', $d);
+                    $data['city'] = $citys;
+                }
+            }
+            $english_levl = array ();
+            foreach ($data as $d => $val) {
+                if (strpos($d, 'english_level_') !== false) {
+                    unset($data[$d]);
+                    $english_levl[] = str_replace('english_level_', '', $d);
+                    $data['english_level'] = $english_levl;
+                }
+            }
+            $remotes = array ();
+            foreach ($data as $d => $val) {
+                if (strpos($d, 'remote_') !== false) {
+                    unset($data[$d]);
+                    $remotes[] = str_replace('remote_', '', $d);
+                    $data['remote'] = $remotes;
+                }
+            }
+        
 //          
 
 

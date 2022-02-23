@@ -82,7 +82,7 @@
                                     @endforeach
                                 </select>
                                 <a class="btn btn-sm btn-change" href="javascript:{}" onclick="document.getElementById('my_form').submit();">Buscar profissional</a>
-                                </forn>
+                            </form>
                         </div>
                     </div>
 
@@ -98,18 +98,18 @@
                             <input type="hidden" name="{{$p}}" value="{{$v}}">                        
 
                             @endforeach    
-                            <input type="submit" class="" value="send">
+                            
                             <div class="container-fluid">
                                 <div class="font-18px ex2">
                                     Método de Trabalho    
                                 </div>
 
                                 <div class="mb-3 form-check">
-                                    <input type="radio" class="form-check-input" id="remoto" name="remote" onclick="filter_field(this)" value="true" >
+                                    <input type="checkbox" class="form-check-input" id="remoto" name="remote_1" onclick="filter_field(this)" value="true" >
                                     <label class="form-check-label" for="remoto">Remoto</label>
                                 </div>
                                 <div class="mb-3 form-check">
-                                    <input type="radio" class="form-check-input" id="presencial" name="remote" onclick="filter_field(this)" value="true">
+                                    <input type="checkbox" class="form-check-input" id="presencial" name="remote_0" onclick="filter_field(this)" value="true">
                                     <label class="form-check-label" for="presencial">Presencial</label>
                                 </div>
                             </div>
@@ -120,13 +120,12 @@
 
                                 @foreach($states as $state)
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" name="state_id_{{$state->id}}" id="{{$state->name}}" 
+                                    <input type="checkbox" class="form-check-input" name="state_id_{{$state->id}}" id="{{$state->name}}"  onclick="filter_field(this)"  
                                            @if (isset ($param['state_id'] ))
                                            @if ($param['state_id'] ==$state->id)
                                     {{'checked'}}
-                                    @endif>
                                     @endif
-                                    " onclick="filter_field(this)" 
+                                    @endif                                    
                                     >
                                     <label class="form-check-label" for="{{$state->name}}">{{$state}}</label>
                                 </div>
@@ -138,7 +137,7 @@
                                 </div>
                                 @foreach($city as $c)
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" name="city_" id="{{$c['city']}}" onclick="filter_field(this)" >
+                                    <input type="checkbox" class="form-check-input" name="city_{{$c['city']}}" id="{{$c['city']}}" onclick="filter_field(this)" >
                                     <label class="form-check-label" for="{{$c['city']}}">{{$c['city']}}</label>
                                 </div>
                                 @endforeach
@@ -153,22 +152,18 @@
                                     <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}" name="english_level_{{$english_level->id}}" onclick="filter_field(this)" >
                                     <label class="form-check-label" for="{{$english_level->level}}-{{$english_level->id}}">{{$english_level}}</label>
                                 </div>
-                                
-                                    @endforeach
+                                @endforeach
                             </div>
-                            <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
                         </form>
+                        <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
+
                     </div>
                     <div class="col-8 container-fluid">
                         <div id="results">
                             @include('desktop.list')    
                         </div>           
 
-                        <div id="see-more" class="text-center 
-                             @if(!$paginator->hasPages())
-                             {{'hide'}}
-                             @endif
-                             ">                                
+                        <div id="see-more" class="text-center   @if(!$paginator->hasPages())    {{'hide'}}   @endif ">                                
                             <a class="btn btn-lg ex2"
                                onclick="see_more()">Ver Mais</a>
                         </div>
@@ -219,8 +214,44 @@
 
             <script>
 
-                function filter_field( ) {
+                function filter_field(field) {
 
+                    console.log('teste');
+                    var http = new XMLHttpRequest();
+                    var url = '/search_more';
+                    var dataForm = new FormData();
+                    var data = $('#form_filter').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    var have_state_or_city = false;
+                    jQuery.each(data, function (key, value) {
+                        dataForm.append( key , value);
+                        if (key.includes('state_id_')) have_state_or_city =true;
+                        if (key.includes('city_')) have_state_or_city =true;
+                    });
+                    
+                    dataForm.append('page', 1);
+
+//                    data['page'] = 1;
+//                    console.log(dataForm);
+                    if (have_state_or_city){
+                    http.open('POST', url, true);
+//Send the proper header information along with the request                
+                    http.onreadystatechange = function () {//Call a function when the state changes.
+                        if (http.readyState == 4 && http.status == 200) {
+//                console.log(http.responseText);
+//        console.log("Data: " + data + "\nStatus: " + status);
+                            $('#results').html(http.responseText);
+                            page++;
+                        }
+                    }
+                    http.send(dataForm);
+                    page =2;
+                }else{
+                    field.checked =  false;
+                    alert('Você deve selecionar um estado ou cidade para filtrar os resultados');
+                }
 //                    document.getElementById('my_form').submit();
                 }
 
@@ -229,11 +260,19 @@
                     console.log('teste');
                     var http = new XMLHttpRequest();
                     var url = '/search_more';
-                    var data = new FormData();
-                            @foreach($param as $p => $v)
-                    data.append('{{$p}}', '{{$v}}');
-                    @endforeach
-                            data.append('page', page);
+                    var dataForm = new FormData();
+                    var data = $('#form_filter').serializeArray().reduce(function (obj, item) {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {});
+                    var have_state_or_city = false;
+                    jQuery.each(data, function (key, value) {
+                        dataForm.append( key , value);
+                        if (key.includes('state_id_')) have_state_or_city =true;
+                        if (key.includes('city_')) have_state_or_city =true;
+                    });
+                    alert (have_state_or_city);
+                            dataForm.append('page', page);
                     http.open('POST', url, true);
 //Send the proper header information along with the request                
                     http.onreadystatechange = function () {//Call a function when the state changes.
@@ -244,7 +283,7 @@
                             page++;
                         }
                     }
-                    http.send(data);
+                    http.send(dataForm);
                 }
 
 // A $( document ).ready() block.
