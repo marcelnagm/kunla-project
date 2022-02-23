@@ -8,38 +8,37 @@ use Illuminate\Http\Request;
 class CandidateControler extends Controller {
 
     private $rules = array(
-            'title' => 'required|max:255',
-            'role_id' => 'required|max:255',
-            'payment' => 'required|max:8',
-            'CID' => 'required|max:244',
-            'state_id' => 'required|max:2',
-            'city' => 'required|max:255',
-            'remote' => 'required|max:1',
-            'move_out' => 'required|max:1',
-            'description' => 'required|max:255',
-            'english_level' => 'required|max:1',
-            'full_name' => 'required|max:255', 
-            'cellphone'=> 'required|max:12', 
-            'email' => 'required|max:255', 
-            'cv_url' => 'required|max:255' ,
-            'status_id'=> 'required|max:1'
-        );
-    
-    private $searchble= array(
+        'title' => 'required|max:255',
+        'role_id' => 'required|max:255',
+        'payment' => 'required|max:8',
+        'CID' => 'required|max:244',
+        'state_id' => 'required|max:2',
+        'city' => 'required|max:255',
+        'remote' => 'required|max:1',
+        'move_out' => 'required|max:1',
+        'description' => 'required|max:255',
+        'english_level' => 'required|max:1',
+        'full_name' => 'required|max:255',
+        'cellphone' => 'required|max:12',
+        'email' => 'required|max:255',
+        'cv_url' => 'required|max:255',
+        'status_id' => 'required|max:1'
+    );
+    private $searchble = array(
         'title' => '%',
-            'role_id' => '%',
-            'payment_min' => 'min',
-            'payment_max' => 'max',
-            'state_id' => 'in',
-         'city' => '%',
+        'role_id' => '%',
+        'payment_min' => 'min',
+        'payment_max' => 'max',
+        'state_id' => 'in',
+        'city' => '%',
         'remote' => '=',
         'english_level' => '='
     );
-    
-   /**
-    *   Retorna um Json com todos os registos
-    * @return Json 
-    */ 
+
+    /**
+     *   Retorna um Json com todos os registos
+     * @return Json 
+     */
     public function index() {
         return Candidate::orderBy('id')->cursorPaginate(10);
     }
@@ -68,8 +67,8 @@ class CandidateControler extends Controller {
      */
     public function store(Request $request) {
 
-        
-        
+
+
 //          $messsages = array(
 //		'email.required'=>'You cant leave Email field empty',
 //		'name.required'=>'You cant leave name field empty',
@@ -99,7 +98,7 @@ class CandidateControler extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id) {
-        return Candidate::where('gid',$id)->first();
+        return Candidate::where('gid', $id)->first();
     }
 
     /**
@@ -125,23 +124,23 @@ class CandidateControler extends Controller {
      * @return \Illuminate\Http\Response Json com mensagem de sucesso ou mensagem de erro de validação
      */
     public function update(Request $request, $id) {
-        $candidate =Candidate::where('gid',$id)->first();
+        $candidate = Candidate::where('gid', $id)->first();
         $candidate->update($this->validate($request, $this->rules));
 
         return response()->json([
-                    'status' => true,                   
+                    'status' => true,
                     'msg' => 'Candidate successfully updated!',
         ]);
     }
-    
+
     public function publish(Request $request, $id) {
-        $candidate =Candidate::where('gid',$id)->first();
+        $candidate = Candidate::where('gid', $id)->first();
         $candidate->status_id = 1;
         $candidate->published_at = date("Y-m-d H:i:s");
         $candidate->update();
 
         return response()->json([
-                    'status' => true,                   
+                    'status' => true,
                     'msg' => 'Candidate successfully updated!',
         ]);
     }
@@ -153,9 +152,8 @@ class CandidateControler extends Controller {
      */
     public function destroy($id) {
 
-        return $candidate =Candidate::where('gid',$id)->first()->delete();
+        return $candidate = Candidate::where('gid', $id)->first()->delete();
     }
-    
 
     /**
      * Retorna os candidatos pelos parâmetros informados
@@ -170,59 +168,94 @@ class CandidateControler extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request) {
-        
-        $param = array ();
+
+
+//        dd ($request->all());
+
+        $data = $request->all();
+        $states = array();
+        if (array_key_exists('state_id', $data) || array_key_exists('state_id_', $data)) {
+            if ($data['state_id'] != '') {
+                $states[] = $data['state_id'];
+                $data['state_id'] = $states;
+            }else{
+            unset($data['state_id']);
+            }
+            foreach ($data as $d => $val) {
+
+                if (strpos($d, 'state_id_') !== false) {
+                    echo $d;
+                    $states[] = str_replace('state_id_', '', $d);
+                    $data['state_id'] = $states;
+                }
+            }
+        } 
+//          
+
+
+//        dd($data);
+        $param = array();
         /**
          * @var $search 
          */
 //        $search = new luminate\Database\Eloquent\Builder();
-        $search =Candidate::select()->where('published_at', "!=" , NULL)
-                ->where('status_id',1)->orderBy('published_at','desc'); 
-        foreach ($this->searchble as $key => $val){            
-            if ($request->has($key) &&  $request->input($key) != ''){
-                $param[$key] = $request->input($key);
-                if ($val == '='){
-                      $search= $search->where($key,$request->input($key));
+        $search = Candidate::select()->where('published_at', "!=", NULL)
+                        ->where('status_id', 1)->orderBy('published_at', 'desc');
+        foreach ($this->searchble as $key => $val) {
+
+            if (array_key_exists($key, $data)) {
+
+                if ($data[$key] != '') {
+                    $param[$key] = $request->input($key);
+                    if ($val == '=') {
+                        $search = $search->where($key, $request->input($key));
+                    }
+
+                    if ($val == 'in') {
+//                        dd('in');
+                        if (is_array($data[$key])) {
+                            $search = $search->whereIn($key, $data[$key]);
+//                            dd('in');
+                        } else {
+//                            dd('not in');
+                            $search = $search->where($key, $data[$key]);
+                        }
+                    }
+                    if ($val == '%') {
+                        if ($key == 'role_id') {
+                            $search = $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id')
+                                    ->where('role', 'like', $val . $data[$key] . $val);
+                        } else {
+                            $search = $search->where($key, 'like', $val . $data[$key] . $val);
+                        }
+                    }
+                    if ($val == 'min' || $val == 'max') {
+                        $search = $search->where(str_replace('_' . $val, '', $key),
+                                $val == 'min' ? '>=' : '<=',
+                                $data[$key]);
+                    }
                 }
-                if ($val == 'in'){                      
-                      if (is_array($request->input($key)))
-                      $search= $search->whereIn($key,$request->input($key));
-                      else $search= $search->where($key,$request->input($key));
-                }
-                if ($val == '%'){
-                    if ($key == 'role_id'){
-                     $search= $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id')
-                             ->where('role','like',$val.$request->input($key).$val);   
-                    } else{
-                        $search= $search->where($key,'like',$val.$request->input($key).$val);
-                    }                      
-                }
-                if ($val == 'min' || $val=='max'){                    
-                      $search= $search->where(str_replace('_'.$val, '', $key),
-                              $val  == 'min' ? '>=' : '<=',
-                              $request->input($key));
-               }                              
             }
         }
-        if ($request->has('order_by')){
-        foreach($request->input('order_by')[0] as $order => $type) {
+        if ($request->has('order_by')) {
+            foreach ($request->input('order_by')[0] as $order => $type) {
 //                      
-            $search->orderBy($order,$type);                
-             if ($order == 'candidate_role.role'){
-                     $search= $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id');
-                     $search->orderBy($order,$type);                
-                    }
-             if ($order == 'state.name'){
-                     $search= $search->join('state', 'candidate.state_id', '=', 'state.id');
-                     $search->orderBy($order,$type);                
-                    }            
+                $search->orderBy($order, $type);
+                if ($order == 'candidate_role.role') {
+                    $search = $search->join('candidate_role', 'candidate.role_id', '=', 'candidate_role.id');
+                    $search->orderBy($order, $type);
+                }
+                if ($order == 'state.name') {
+                    $search = $search->join('state', 'candidate.state_id', '=', 'state.id');
+                    $search->orderBy($order, $type);
+                }
+            }
         }
-        }
-        if ($request->input('page') != null){
-            $search->skip(10 * $request->input('page'))->take(10);
+        if ($request->input('page') != null) {
+            $search->skip(10 * $data['page'])->take(10);
         }
 //         
-//       dd($search->toSql());
+//        dd($search->toSql());
 
         return array(
             'search' => $search,

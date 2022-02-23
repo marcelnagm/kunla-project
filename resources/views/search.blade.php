@@ -120,7 +120,7 @@
 
                                 @foreach($states as $state)
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" name="state_id" id="{{$state->name}}" 
+                                    <input type="checkbox" class="form-check-input" name="state_id_{{$state->id}}" id="{{$state->name}}" 
                                            @if (isset ($param['state_id'] ))
                                            @if ($param['state_id'] ==$state->id)
                                     {{'checked'}}
@@ -138,7 +138,7 @@
                                 </div>
                                 @foreach($city as $c)
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" name="city" id="{{$c['city']}}">
+                                    <input type="checkbox" class="form-check-input" name="city_" id="{{$c['city']}}" onclick="filter_field(this)" >
                                     <label class="form-check-label" for="{{$c['city']}}">{{$c['city']}}</label>
                                 </div>
                                 @endforeach
@@ -150,7 +150,7 @@
 
                                 @foreach($english_levels as $english_level)
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}" name="english_level">
+                                    <input type="checkbox" class="form-check-input" id="{{$english_level->level}}-{{$english_level->id}}" name="english_level_{{$english_level->id}}" onclick="filter_field(this)" >
                                     <label class="form-check-label" for="{{$english_level->level}}-{{$english_level->id}}">{{$english_level}}</label>
                                 </div>
                                 
@@ -221,7 +221,7 @@
 
                 function filter_field( ) {
 
-                    document.getElementById('my_form').submit();
+//                    document.getElementById('my_form').submit();
                 }
 
                 var page = 2;
