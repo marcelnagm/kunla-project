@@ -3,8 +3,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="{{ url('css/home_dsk.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/home_dsk.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Kunla</title>
     </head>
 
     <body>
@@ -75,6 +76,7 @@
 
                         @if($candidate->doctor_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b> Doutorado: 
                                 {{$candidate->doctor_degree}}
                             </b>
@@ -82,35 +84,41 @@
                         @endif
                         @if($candidate->master_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b>Mestrado: </b>
                             {{$candidate->master_degree}}
                         </p>
                         @endif
                         @if($candidate->mba_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b>MBA: </b>
                             {{$candidate->mba_degree}}
                         </p>
                         @endif
                         @if($candidate->spec_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b>Pós-graduação: </b>
                             {{$candidate->spec_degree}}
                         </p>
                         @endif
                         @if($candidate->superior_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b> Ensino Superior:</b>
                             {{$candidate->superior_degree}}
                         </p>
                         @endif
                         @if($candidate->tecnical_degree != null)
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b> Ensino Técnico:</b>
                             {{$candidate->tecnical_degree}}
                         </p>
                         @endif
                         <p class="text-justify font-18px">
+                            <i class="fa-solid fa-check"></i>
                             <b> Inglês:</b>
                             {{$candidate->english_level()}}
                         </p>
@@ -120,6 +128,7 @@
                             {{$candidate->CID}}
                         </p>
                         @if($candidate->move_out)
+                        <i class="fa-solid fa-check"></i>
                         <b class="font-18px">
                             Possui disponibilidade de mudança
                         </b>
@@ -149,7 +158,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="footer-logo">
-                                <img  src="{{ url('img/dsk/logo-rodape.png') }}" >     
+                                <img  src="{{ URL::asset('img/dsk/logo-rodape.png') }}" >     
                                 <div class="footer-text">
                                     Kunla.com.br © 2022<br></br>
                                     Todos os direitos reservados

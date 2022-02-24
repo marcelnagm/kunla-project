@@ -3,8 +3,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="{{ url('css/home_dsk.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/home_dsk.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Kunla</title>
     </head>
 
     <body>
@@ -155,7 +156,7 @@
                                 @endforeach
                             </div>
                         </form>
-                        <a class="text-decoration-none font-18px font-weight-bolder ex2">Desfazer todos os filtros</a>
+                        <a class="text-decoration-none font-18px font-weight-bolder ex2" href="javascript:{}" onclick="clear_form()">Desfazer todos os filtros</a>
 
                     </div>
                     <div class="col-8 container-fluid">
@@ -175,7 +176,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="footer-logo">
-                                <img  src="{{ url('img/dsk/logo-rodape.png') }}" >     
+                                <img  src="{{ URL::asset('img/dsk/logo-rodape.png') }}" >     
                                 <div class="footer-text">
                                     Kunla.com.br © 2022<br></br>
                                     Todos os direitos reservados
@@ -213,7 +214,13 @@
 
 
             <script>
-
+                
+                function clear_form(){
+//                    console.log('teste clear');
+                    $('input[type=checkbox]').prop('checked',false);
+                  filter_field($('#form_filter'));
+            }
+                
                 function filter_field(field) {
 
                     console.log('teste');
@@ -224,18 +231,15 @@
                         obj[item.name] = item.value;
                         return obj;
                     }, {});
-                    var have_state_or_city = false;
+                    
                     jQuery.each(data, function (key, value) {
-                        dataForm.append( key , value);
-                        if (key.includes('state_id_')) have_state_or_city =true;
-                        if (key.includes('city_')) have_state_or_city =true;
+                        dataForm.append( key , value);                    
                     });
                     
                     dataForm.append('page', 1);
 
 //                    data['page'] = 1;
 //                    console.log(dataForm);
-                    if (have_state_or_city){
                     http.open('POST', url, true);
 //Send the proper header information along with the request                
                     http.onreadystatechange = function () {//Call a function when the state changes.
@@ -248,10 +252,7 @@
                     }
                     http.send(dataForm);
                     page =2;
-                }else{
-                    field.checked =  false;
-                    alert('Você deve selecionar um estado ou cidade para filtrar os resultados');
-                }
+                
 //                    document.getElementById('my_form').submit();
                 }
 

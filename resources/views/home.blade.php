@@ -3,8 +3,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="{{ url('css/home_dsk.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ URL::asset('/css/home_dsk.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Kunla</title>
     </head>
 
     <body>
@@ -68,7 +69,7 @@
 
                 <div class="row section">  
                     <div class="col-4">  
-                        <img class="img-fluid"  src="{{ url('img/dsk/02-desktop.png') }}">
+                        <img class="img-fluid"  src="{{ URL::asset('/img/dsk/02-desktop.png') }}">
                     </div>  
                     <div class="col-8 section-texts">  
                         <div class="subtitle-2">
@@ -79,7 +80,7 @@
                         </div>
                     </div>  
                 </div>  
-                <img   src="{{ url('img/dsk/01_home--6.png') }}" class="sing1">
+                <img   src="{{ URL::asset('/img/dsk/01_home--6.png') }}" class="sing1">
                 <div class="row section">  
                     <div class="col-3 section-3-title section-texts" style="margin-right: 3rem;">
 
@@ -124,7 +125,7 @@
                         </div>
                     </div>  
                 </div>  
-                <img  src="{{ url('img/dsk/01_home--7.png') }}" class="sing2">
+                <img  src="{{ URL::asset('/img/dsk/01_home--7.png') }}" class="sing2">
                 <div class="row section">  
                     <div class="col-8 section-texts">  
                         <div class="subtitle-4">
@@ -135,14 +136,14 @@
                         </div>
                     </div>  
                     <div class="col-4">  
-                        <img class="img-fluid"  src="{{ url('img/dsk/03-desktop.png') }}" style="position: relative; top: -10px;">
+                        <img class="img-fluid"  src="{{ URL::asset('img/dsk/03-desktop.png') }}" style="position: relative; top: -10px;">
                     </div>  
 
                 </div>      
-                <img  src="{{ url('img/dsk/01_home--8.png') }}" class="sing3">
+                <img  src="{{ URL::asset('/img/dsk/01_home--8.png') }}" class="sing3">
                 <div class="row section">  
                     <div class="col-6">  
-                        <img class="img-fluid"  src="{{ url('img/dsk/04-desktop.png') }}" style="">
+                        <img class="img-fluid"  src="{{ URL::asset('/img/dsk/04-desktop.png') }}" style="">
                     </div> 
                     <div class="col section-texts-2">  
                         <div class="subtitle-4">
@@ -151,14 +152,14 @@
                         <div class="text-base-2">
                             A Kunla é um negócio de impacto social positivo que <b>acredita que formação transforma vidas,</b> e sabe o valor que o profissional certo tem para a empresa.
                             <div class="subtitle-5">
-                                <img class="img-fluid"  src="{{ url('img/dsk/icon1.png') }}" >
+                                <img class="img-fluid"  src="{{ URL::asset('/img/dsk/icon1.png') }}" >
                                 Mapeamento de profissionais
                             </div>
                             <div class="subsection-5">
                                 Mapeamos o mercado de profissionais de tecnologia e disponibilizamos na plataforma para ajudar empresas a contratarem de forma ágil.
                             </div>
                             <div class="subtitle-5">
-                                <img class="img-fluid"  src="{{ url('img/dsk/icon2.png') }}" >
+                                <img class="img-fluid"  src="{{ URL::asset('/img/dsk/icon2.png') }}" >
                                 Programa de formação
                             </div>
                             <div class="subsection-5">
@@ -171,7 +172,7 @@
                 <div class="row section section-img" style="width: 100%;">  
 
                     <div class="col-7">
-                        <img class="img-fluid" src="{{ url('img/dsk/05-desktop.png') }}" >
+                        <img class="img-fluid" src="{{ URL::asset('/img/dsk/05-desktop.png') }}" >
                     </div>
                     <div class="col-5 right-part">
                         <div class="subtitle-4" >
@@ -199,7 +200,7 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="footer-logo">
-                            <img  src="{{ url('img/dsk/logo-rodape.png') }}" >     
+                            <img  src="{{ URL::asset('/img/dsk/logo-rodape.png') }}" >     
                             <div class="footer-text">
                                 Kunla.com.br © 2022<br></br>
                                 Todos os direitos reservados
