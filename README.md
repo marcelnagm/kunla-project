@@ -1,24 +1,46 @@
-# Lumen PHP Framework
+# kunla-project
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+API em **Laravel Lumen 8** para um **banco de talentos de profissionais de tecnologia**: cadastro, busca e publicação de candidatos, com painel administrativo.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Funcionalidades
 
-## Official Documentation
+- Busca pública de candidatos (`/`, `/search`, `/search_more`) e página de detalhe (`/detail/{gid}`)
+- Lista de estados (`/state`)
+- Área autenticada (middleware `auth`) para o CRUD de candidatos: criar, listar, buscar, ver, atualizar, remover e **publicar**
+- Modelos: `Candidate`, `CandidateRole` (função), `CandidateEnglishLevel` (nível de inglês), `CandidateStatus`, `State` e `User`
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+### Rotas principais
 
-## Contributing
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/candidate` | Lista candidatos |
+| `POST` | `/candidate/store/` | Cadastra candidato |
+| `POST` | `/candidate/search` | Pesquisa candidatos |
+| `POST` | `/candidate/{id}` | Detalha um candidato |
+| `POST` | `/candidate/{id}/publish` | Publica o candidato |
+| `PUT` | `/candidate/{id}/update` | Atualiza |
+| `DELETE` | `/candidate/{id}` | Remove |
+| `GET` | `/state` | Lista de estados |
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+As rotas de candidato exigem autenticação. A definição completa está em `routes/web.php`.
 
-## Security Vulnerabilities
+## Stack
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+PHP 7.3+ / 8, Lumen 8, Eloquent, PHPUnit.
 
-## License
+## Como rodar
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer install
+cp .env.example .env        # configure banco de dados e chaves
+# importe/crie as tabelas conforme os modelos em app/Models e database/
+php -S localhost:8000 -t public
+```
+
+## Documentação
+
+A pasta `docs/` traz o PDF de mapeamento da API, a documentação do painel administrativo e modelos de JSON.
+
+## Licença
+
+Lumen é distribuído sob a [licença MIT](https://opensource.org/licenses/MIT).
